@@ -1,0 +1,43 @@
+{
+  "name": "doc-giggle",
+  "version": "0.0.0-development",
+  "license": "MIT",
+  "author": "Jeff Tian",
+  "main": "dist/index.js",
+  "module": "dist/doc-giggle.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint --fix",
+    "semantic-release": "semantic-release",
+    "prepare": "yarn build"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/request": "^2.48.3",
+    "husky": "^3.1.0",
+    "semantic-release": "^15.13.31",
+    "tsdx": "^0.11.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.2",
+    "jest-config": "latest"
+  },
+  "dependencies": {
+    "request": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jeff-Tian/doc-giggle.git"
+  }
+}
