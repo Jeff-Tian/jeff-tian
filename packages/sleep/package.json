@@ -1,5 +1,8 @@
 {
-  "name": "doc-giggle",
+  "name": "@jeff-tian/sleep",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.0-development",
   "license": "MIT",
   "author": "Jeff Tian",
@@ -25,16 +28,16 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",
-    "@types/request": "^2.48.3",
+    "@types/ramda": "^0.26.36",
     "husky": "^3.1.0",
+    "jest-config": "latest",
     "semantic-release": "^15.13.31",
     "tsdx": "^0.11.0",
     "tslib": "^1.10.0",
-    "typescript": "^3.7.2",
-    "jest-config": "latest"
+    "typescript": "^3.7.2"
   },
   "dependencies": {
-    "request": "latest"
+    "ramda": "^0.26.1"
   },
   "repository": {
     "type": "git",
