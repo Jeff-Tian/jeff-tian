@@ -7,7 +7,7 @@
   "license": "MIT",
   "author": "Jeff Tian",
   "main": "dist/index.js",
-  "module": "dist/doc-giggle.esm.js",
+  "module": "dist/sleep.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
