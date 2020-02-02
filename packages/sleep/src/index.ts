@@ -11,4 +11,20 @@ const curriedSetTimeout = (time: number) => (func: () => void) => {
 
 const promisify = (func: Executor) => new Promise(func);
 
-export const sleep = R.compose(promisify, curriedSetTimeout, R.multiply(1000));
+export const sleepAtLeast = R.compose(
+  promisify,
+  curriedSetTimeout,
+  R.multiply(1000)
+);
+
+/**
+ * @deprecated Since version 1.1.0. Will be deleted in version 2.0.0. Use sleepAtLeast instead.
+ */
+export const sleep = R.compose(
+  sleepAtLeast,
+  R.tap(() =>
+    console.warn(
+      "@deprecated Since version 1.1.0. Will be deleted in version 2.0.0. Use sleepAtLeast instead."
+    )
+  )
+);
