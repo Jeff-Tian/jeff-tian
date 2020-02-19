@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "tsdx build&&tsc src/hello.ts --outDir dist",
     "test": "tsdx test",
     "lint": "tsdx lint --fix",
     "semantic-release": "semantic-release",
