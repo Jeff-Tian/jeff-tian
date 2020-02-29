@@ -18,7 +18,8 @@
     "test": "tsdx test",
     "lint": "tsdx lint --fix",
     "semantic-release": "semantic-release",
-    "prepare": "yarn build"
+    "prepare": "yarn build",
+    "postinstall": "node-gyp configure&&node-gyp build"
   },
   "peerDependencies": {},
   "husky": {
@@ -31,6 +32,7 @@
     "@types/ramda": "^0.26.36",
     "husky": "^3.1.0",
     "jest-config": "latest",
+    "node-gyp": "^6.1.0",
     "semantic-release": "^15.13.31",
     "tsdx": "^0.11.0",
     "tslib": "^1.10.0",
