@@ -10,7 +10,8 @@
   "module": "dist/sleep.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "binding.gyp"
   ],
   "scripts": {
     "start": "tsdx watch",
