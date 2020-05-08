@@ -14,6 +14,7 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "publish": "lerna publish --no-push && git push --tags"
   }
 }
