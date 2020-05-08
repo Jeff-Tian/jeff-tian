@@ -2,19 +2,13 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "@types/mocha": "^7.0.2",
-    "@types/node": "^13.13.5",
-    "espower-typescript": "^9.0.2",
-    "lerna": "^3.20.2",
-    "mocha": "^7.1.2",
-    "power-assert": "^1.6.1",
-    "typescript": "^3.8.3"
+    "lerna": "^3.20.2"
   },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "test": "lerna run test",
-    "publish": "lerna publish --no-push && git push --tags"
+    "pub": "lerna publish --no-push && git push --tags"
   }
 }
