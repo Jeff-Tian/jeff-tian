@@ -12,10 +12,13 @@ npm i @jeff-tian/sleep --save
 
 ## Usage:
 
-```typescript
-import { sleep } from 'sleep'
+**Notice**: the parameter is in seconds, instead of milliseconds!
 
-await sleep(3)
+```typescript
+import { sleepAtLeast } from 'sleep'
+
+// Sleep at least 3 seconds
+await sleepAtLeast(3)
 
 ```
 
