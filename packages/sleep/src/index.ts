@@ -1,35 +1,35 @@
-import R from "ramda"
+import R from "ramda";
 
 type Executor = (
-    resolve: (value?: any) => void,
-    reject: (value?: any) => void
+  resolve: (value?: any) => void,
+  reject: (value?: any) => void
 ) => void;
 
 const curriedSetTimeout = (time: number) => (func: () => void) => {
-    setTimeout(func, time)
-}
+  setTimeout(func, time);
+};
 
-const promisify = (func: Executor) => new Promise(func)
+const promisify = (func: Executor) => new Promise(func);
 
 export const sleepAtLeast = R.compose(
-    promisify,
-    curriedSetTimeout,
-    R.multiply(1000),
-    R.tap((seconds: number) => {
-        if (seconds > 1000) {
-            console.warn(`Will sleep at least ${seconds / 60} minutes!`)
-        }
-    })
-)
+  promisify,
+  curriedSetTimeout,
+  R.multiply(1000),
+  R.tap((seconds: number) => {
+    if (seconds > 1000) {
+      console.warn(`Will sleep at least ${seconds / 60} minutes!`);
+    }
+  })
+);
 
 /**
  * @deprecated Since version 1.1.0. Will be deleted in version 2.0.0. Use sleepAtLeast instead.
  */
 export const sleep = R.compose(
-    sleepAtLeast,
-    R.tap(() =>
-        console.warn(
-            "@deprecated Since version 1.1.0. Will be deleted in version 2.0.0. Use sleepAtLeast instead."
-        )
+  sleepAtLeast,
+  R.tap(() =>
+    console.warn(
+      "@deprecated Since version 1.1.0. Will be deleted in version 2.0.0. Use sleepAtLeast instead."
     )
-)
+  )
+);
