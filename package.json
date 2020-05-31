@@ -11,6 +11,6 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "test": "lerna run test",
-    "pub": "lerna bootstrap && lerna publish --no-push && git push --tags"
+    "pub": "lerna bootstrap && lerna publish && git push --tags"
   }
 }
