@@ -10,12 +10,14 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc",
+    "prepublishOnly": "npm run test"
   },
   "author": "Jeff Tian <jeff.tian@outlook.com>",
   "license": "ISC",
   "dependencies": {
-    "debug": "^4.1.1"
+    "debug": "^4.1.1",
+    "typescript": "^3.9.3"
   },
   "gitHead": "acd1c06594455d3b3a15fac47ac85e2f1c0b4ac1"
 }
