@@ -1,4 +1,4 @@
-import {tryCacheProxy} from "../src/TryCatchProxy"
+import {tryCatchProxy} from "../src/TryCatchProxy"
 import assert = require("assert")
 
 describe("TryCatchProxy", () => {
@@ -11,7 +11,7 @@ describe("TryCatchProxy", () => {
 
         const errors = []
 
-        tryCacheProxy(Foo, (error) => {
+        tryCatchProxy(Foo, (error) => {
             errors.push(error)
         })
 

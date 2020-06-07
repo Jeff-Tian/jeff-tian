@@ -1,4 +1,4 @@
-export const tryCacheProxy = (superClass, errorHandler) => {
+export const tryCatchProxy = (superClass, errorHandler) => {
     const prototype = superClass.prototype
 
     if (Object.getOwnPropertyNames(prototype).length < 2) {
