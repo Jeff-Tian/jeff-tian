@@ -5,3 +5,7 @@ exports.baz = function() {
 
   this.bar()
 }
+
+exports.testFromOutside = function() {
+  return this.test()
+}

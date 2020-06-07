@@ -1,8 +1,20 @@
 const util = require('util')
 
 class Foo {
+  constructor() {
+    this.hello = function() {
+      console.log('hello')
+
+      return "hello"
+    }
+  }
+
   bar() {
     throw new Error('foo-bar-error')
+  }
+
+  test() {
+    return this.hello()
   }
 }
 

@@ -39,4 +39,11 @@ describe("TryCatchProxy", () => {
         assert.deepStrictEqual(errors, ['foo-bar-error', 'foo-bar-error'])
         assert(errors.length === 2)
     })
+
+    it("works with constructor defined methods", () => {
+        const sut = new Foo()
+
+        // @ts-ignore
+        assert(sut.testFromOutside() === 'hello')
+    })
 })
