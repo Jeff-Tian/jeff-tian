@@ -5,9 +5,9 @@ export const tryCatchProxy = (superClass, errorHandler) => {
         return superClass
     }
 
-    const handler = fn => (...args: any[]) => {
+    const handler = (fn, self) => (...args: any[]) => {
         try {
-            return fn.apply(this, args)
+            return fn.apply(self ?? this, args)
         } catch (error) {
             errorHandler(error)
 
@@ -17,7 +17,7 @@ export const tryCatchProxy = (superClass, errorHandler) => {
 
     for (const property in Object.getOwnPropertyDescriptors(prototype)) {
         if (prototype.hasOwnProperty(property) && property !== 'constructor' && typeof prototype[property] === 'function') {
-            superClass.prototype[property] = handler(superClass.prototype[property])
+            superClass.prototype[property] = handler(superClass.prototype[property], superClass.prototype)
         }
     }
 
