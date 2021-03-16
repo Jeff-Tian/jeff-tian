@@ -2,6 +2,7 @@ import {Failable} from "../src"
 import {Err} from "../src"
 import assert = require('assert')
 import {sleepAtLeast} from '@jeff-tian/sleep'
+import {combineAsync} from "./fixtures/fc"
 
 describe("Failable", () => {
     it("ok", () => {
@@ -59,5 +60,21 @@ describe("Async", () => {
         assert(res.value.message === "too big!")
 
         return "err"
+    })
+
+    it("works with functional programming", async () => {
+        const sut = combineAsync(async () => sleepAtLeast(1), async () => {
+            await sleepAtLeast(1)
+            throw new Error("error in async")
+        })
+
+        // @ts-ignore
+        await assert.rejects(sut, {name: "Error", message: "error in async"})
+
+        const sut2 = Failable.dontThrowAsync(sut)
+        await assert.doesNotReject(sut2)
+        const res = await sut2
+        assert(res instanceof Err)
+        assert(res.toString().startsWith('Err(Error: error in async'))
     })
 })
