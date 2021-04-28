@@ -19,12 +19,12 @@ using `lerna`
 under project root:
 
 ```shell script
-npm i
-npm test
+yarn
+yarn test
 ```
 
 ## Publish
 
 ```shell script
-npm run pub
+yarn pub
 ```
