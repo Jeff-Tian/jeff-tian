@@ -79,7 +79,7 @@ exports.createResolvers = async ({
 	})
 }
 
-exports.createArticle = function createArticle(mdNameFormat, createNodeId, createContentDigest, createNode) {
+function createArticle(mdNameFormat, createNodeId, createContentDigest, createNode) {
 	return article => {
 		const slug = mdNameFormat === `title` ? article.title : article.slug
 
