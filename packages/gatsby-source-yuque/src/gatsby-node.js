@@ -84,7 +84,7 @@ function createArticle(mdNameFormat, createNodeId, createContentDigest, createNo
 		const slug = mdNameFormat === `title` ? article.title : article.slug
 
 		const template = `---
-title: ${article.title.replace(/^@/, ``)}
+title: ${article.title.replace(/^@/, ``).replace(/`/g, '')}
 slug: ${slug}
 date: ${article.date || formatDate(article.created_at)}
 tags: ${formatArray(article.tags)}
