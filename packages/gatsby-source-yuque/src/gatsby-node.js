@@ -91,11 +91,12 @@ tags: ${formatArray(article.tags)}
 categories: ${formatArray(article.categories)}
 ---
 
-${article.body}`
+${article.body.replace(/`/g, '')}`
 
 		const yuqueDocNode = {
 			...article,
 			title: article.title.replace(/`/g, ''),
+			body: article.body.replace(/`/g, ''),
 			id: createNodeId(`yuque-doc-${article.id}`),
 			parent: null,
 			children: [],
