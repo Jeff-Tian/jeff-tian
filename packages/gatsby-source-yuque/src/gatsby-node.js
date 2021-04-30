@@ -85,11 +85,14 @@ function createArticle(mdNameFormat, createNodeId, createContentDigest, createNo
 		const slug = mdNameFormat === `title` ? article.title : article.slug
 
 		const template = `---
+stackbit_url_path: posts/${slug}
 title: ${escapeSpecialCharacters(article.title.replace(/^@/, ``))}
-slug: ${slug}
-date: ${article.date || formatDate(article.created_at)}
+date: '${article.date || formatDate(article.created_at)}'
+excerpt: >-
+	${escapeSpecialCharacters(article.excerpt)}
 tags: ${formatArray(article.tags)}
 categories: ${formatArray(article.categories)}
+template: post
 ---
 
 ${escapeSpecialCharacters(article.body)}`
