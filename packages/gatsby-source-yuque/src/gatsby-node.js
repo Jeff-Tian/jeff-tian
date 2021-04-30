@@ -1,6 +1,7 @@
 const path = require(`path`)
 const process = require(`process`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+const { escapeSpecialCharacters } = require('./escape-special-characters')
 
 const cwd = process.cwd()
 const token = process.env.YUQUE_TOKEN
@@ -84,19 +85,19 @@ function createArticle(mdNameFormat, createNodeId, createContentDigest, createNo
 		const slug = mdNameFormat === `title` ? article.title : article.slug
 
 		const template = `---
-title: ${article.title.replace(/^@/, ``).replace(/`/g, '')}
+title: ${escapeSpecialCharacters(article.title.replace(/^@/, ``))}
 slug: ${slug}
 date: ${article.date || formatDate(article.created_at)}
 tags: ${formatArray(article.tags)}
 categories: ${formatArray(article.categories)}
 ---
 
-${article.body.replace(/`/g, '')}`
+${escapeSpecialCharacters(article.body)}`
 
 		const yuqueDocNode = {
 			...article,
-			title: article.title.replace(/`/g, ''),
-			body: article.body.replace(/`/g, ''),
+			title: escapeSpecialCharacters(article.title),
+			body: escapeSpecialCharacters(article.body),
 			id: createNodeId(`yuque-doc-${article.id}`),
 			parent: null,
 			children: [],

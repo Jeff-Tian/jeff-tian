@@ -1,0 +1,1 @@
+exports.escapeSpecialCharacters = s => s.replace(/`/g, '').replace(/\//g, '').replace(/"/g, '')
