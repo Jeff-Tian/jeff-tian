@@ -96,6 +96,7 @@ ${escapeSpecialCharacters(article.body)}`
 
 		const yuqueDocNode = {
 			...article,
+			excerpt: escapeSpecialCharacters(article.excerpt),
 			title: escapeSpecialCharacters(article.title),
 			body: escapeSpecialCharacters(article.body),
 			id: createNodeId(`yuque-doc-${article.id}`),
@@ -106,6 +107,9 @@ ${escapeSpecialCharacters(article.body)}`
 				mediaType: `text/markdown`,
 				content: template,
 				contentDigest: createContentDigest(article)
+			},
+			frontmatter: {
+				excerpt: escapeSpecialCharacters(article.excerpt)
 			}
 		}
 		createNode(yuqueDocNode)
