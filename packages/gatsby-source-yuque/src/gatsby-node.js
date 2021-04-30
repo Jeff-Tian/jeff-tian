@@ -86,7 +86,7 @@ function createArticle(mdNameFormat, createNodeId, createContentDigest, createNo
 
 		const template = `---
 stackbit_url_path: posts/${slug}
-title: ${escapeSpecialCharacters(article.title.replace(/^@/, ``))}
+title: '${escapeSpecialCharacters(article.title.replace(/^@/, ``))}'
 date: '${article.date || formatDate(article.created_at)}'
 excerpt: >-
 	${escapeSpecialCharacters(article.excerpt)}
