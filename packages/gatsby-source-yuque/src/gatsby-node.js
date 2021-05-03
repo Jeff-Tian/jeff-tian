@@ -103,6 +103,7 @@ ${escapeSpecialCharacters(article.body)}`
 			title: escapeSpecialCharacters(article.title),
 			body: escapeSpecialCharacters(article.body),
 			id: createNodeId(`yuque-doc-${article.id}`),
+			slug,
 			parent: null,
 			children: [],
 			internal: {
@@ -110,16 +111,6 @@ ${escapeSpecialCharacters(article.body)}`
 				mediaType: `text/markdown`,
 				content: template,
 				contentDigest: createContentDigest(article)
-			},
-			fields: {
-				url: '/posts/' + slug + '/',
-				absolutePath: `src/posts/${slug}.md`,
-				relativePath: `${slug}.md`,
-				absoluteDir: 'src/posts',
-				relativeDir: '',
-				base: `${slug}.md`,
-				ext: '.md',
-				name: slug
 			}
 		}
 		createNode(yuqueDocNode)
