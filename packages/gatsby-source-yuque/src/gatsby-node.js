@@ -90,8 +90,6 @@ title: '${escapeSpecialCharacters(article.title.replace(/^@/, ``))}'
 date: '${article.date || formatDate(article.created_at)}'
 excerpt: >-
 	${escapeSpecialCharacters(article.excerpt)}
-tags: ${formatArray(article.tags)}
-categories: ${formatArray(article.categories)}
 template: post
 ---
 
