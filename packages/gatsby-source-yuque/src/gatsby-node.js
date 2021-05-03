@@ -90,6 +90,8 @@ title: '${escapeSpecialCharacters(article.title.replace(/^@/, ``))}'
 date: '${article.date || formatDate(article.created_at)}'
 excerpt: >-
 	${escapeSpecialCharacters(article.excerpt)}
+tags: ${formatArray(article.tags)}
+categories: ${formatArray(article.categories)}
 template: post
 ---
 
@@ -109,6 +111,16 @@ ${escapeSpecialCharacters(article.body)}`
 				content: template,
 				contentDigest: createContentDigest(article)
 			},
+			fields: {
+				url: '/posts/' + slug + '/',
+				absolutePath: `src/posts/${slug}.md`,
+				relativePath: `${slug}.md`,
+				absoluteDir: 'src/posts',
+				relativeDir: '',
+				base: `${slug}.md`,
+				ext: '.md',
+				name: slug
+			}
 		}
 		createNode(yuqueDocNode)
 	}
