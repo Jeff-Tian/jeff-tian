@@ -2,7 +2,7 @@
 
 > A wild developer
 
-![Hardway](https://raw.githubusercontent.com/Jeff-Tian/jeff-tian/master/mp-hardway.png)
+![Hardway](https://ml.jiwai.win/mp-hardway.png)
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjeff-tian%2Fjeff-tian&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
@@ -14,7 +14,7 @@
     <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jeff-tian&langs_count=10&layout=compact" alt="top languages" />
 </a>
 
-<hr style="float: none; clear: both;" />
+<hr style="float: none; clear: both; width: 100%;" />
 
 [![Jeff Tian's github stats](https://github-readme-stats.vercel.app/api?username=jeff-tian&count_private=true&show_icons=true)](https://github.com/anuraghazra/github-readme-stats)
 

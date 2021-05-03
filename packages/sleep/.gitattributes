@@ -1,4 +1,0 @@
-*.gyp text eol=lf
-*.cc text eol=lf
-*.ts text eol=lf
-.* text eol=lf
