@@ -16,7 +16,9 @@
 
 ---
 
-## My Github Stats
+## Jeff Tian's a senior wild developer
+
+A wild developer means I used to go through a wild way through the development journey. But senior means I finally cought up with the professional way in the end.
 
 [![Jeff Tian's github stats](https://github-readme-stats.vercel.app/api?username=jeff-tian&count_private=true&show_icons=true)](https://github.com/anuraghazra/github-readme-stats)
 
