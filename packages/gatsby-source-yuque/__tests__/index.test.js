@@ -1,7 +1,9 @@
 const assert = require('assert');
+const { escapeSpecialCharacters } = require('../src/escape-special-characters')
 
-describe("it works", ()=>{
-    it("works", ()=>{
-        assert(1===1);
+describe("it works", () => {
+    it("escape for undefined", () => {
+        const actual = escapeSpecialCharacters(undefined)
+        assert(actual === '');
     })
 })
