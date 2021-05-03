@@ -14,7 +14,9 @@
     <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jeff-tian&langs_count=10&layout=compact" alt="top languages" />
 </a>
 
-<hr style="float: none; clear: both; width: 100%;" />
+---
+
+## My Github Stats
 
 [![Jeff Tian's github stats](https://github-readme-stats.vercel.app/api?username=jeff-tian&count_private=true&show_icons=true)](https://github.com/anuraghazra/github-readme-stats)
 
