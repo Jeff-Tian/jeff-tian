@@ -1,6 +1,5 @@
 node_modules
 /utils
-__tests__/*
 tests
 yarn.lock
 yarn-error.log
