@@ -111,9 +111,6 @@ ${escapeSpecialCharacters(article.body)}`
 				content: template,
 				contentDigest: createContentDigest(article)
 			},
-			frontmatter: {
-				excerpt: escapeSpecialCharacters(article.excerpt)
-			}
 		}
 		createNode(yuqueDocNode)
 	}
