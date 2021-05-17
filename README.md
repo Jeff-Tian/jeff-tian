@@ -25,4 +25,4 @@ A wild developer means I used to go through a wild way through the development j
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=jeff-tian&repo=egg-passport-weapp)](https://github.com/jeff-tian/egg-passport-weapp)
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=jeff-tian&repo=keycloak-heroku)](https://github.com/jeff-tian/keycloak-heroku)
 
-[![Jeff Tian's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=jeff_tian)](https://github.com/anuraghazra/github-readme-stats)
+[![Jeff Tian's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=@jeff_tian)](https://wakatime.com/@jeff_tian)
