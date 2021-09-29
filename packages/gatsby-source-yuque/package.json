@@ -4,7 +4,7 @@
     "access": "public"
   },
   "description": "Source plugin for pulling data into Gatsby from [语雀](https://www.yuque.com) API.",
-  "version": "1.4.16",
+  "version": "1.4.17",
   "author": "Raincal <cyj94228@gmail.com>",
   "main": "index.js",
   "license": "MIT",
@@ -31,11 +31,11 @@
     "axios": "^0.19.2",
     "dayjs": "^1.8.22",
     "debug": "^4.1.1",
+    "gatsby-source-filesystem": "latest",
     "gray-matter": "^4.0.2",
     "html-entities": "^1.2.1",
     "queue": "^6.0.1",
-    "ramda": "^0.27.0",
-    "gatsby-source-filesystem": "latest"
+    "ramda": "^0.27.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
