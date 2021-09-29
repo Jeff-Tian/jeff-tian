@@ -28,12 +28,12 @@ exports.sourceNodes = async (context, pluginOptions) => {
 	delete pluginOptions.plugins
 
 	if (!login || !repo) {
-		return
+		return []
 	}
 
 	if (!token) {
 		reporter.error(`TOKEN of yuque is required.`)
-		return
+		return []
 	}
 
 	const config = {
@@ -48,7 +48,7 @@ exports.sourceNodes = async (context, pluginOptions) => {
 
 	articles.forEach(createArticle(mdNameFormat, createNodeId, createContentDigest, createNode))
 
-	return
+	return articles
 }
 
 exports.createResolvers = async ({

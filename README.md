@@ -20,6 +20,7 @@ under project root:
 
 ```shell script
 yarn
+npm rebuild # if there were errors regarding @jeff-tian/sleep
 yarn test
 ```
 
