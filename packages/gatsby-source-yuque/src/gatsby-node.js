@@ -8,6 +8,7 @@ const token = process.env.YUQUE_TOKEN
 
 const getAllArticles = require(`./download`)
 const { formatDate, formatArray } = require(`./utils`)
+const { getDate } = require('./get-date')
 
 exports.sourceNodes = async (context, pluginOptions) => {
 	const {
@@ -38,7 +39,7 @@ exports.sourceNodes = async (context, pluginOptions) => {
 
 	const config = {
 		namespace: `${login}/${repo}`,
-		yuquePath: path.join(cwd, `yuque-${Date.now()}.json`),
+		yuquePath: path.join(cwd, `yuque-${getDate(new Date())}.json`),
 		baseUrl,
 		timeout,
 		token
