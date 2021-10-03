@@ -50,7 +50,7 @@
     "yuque"
   ],
   "peerDependencies": {
-    "gatsby-source-filesystem": "^2.1.53"
+    "gatsby-source-filesystem": "3.14.0"
   },
   "gitHead": "75915c3977cf548194efe1566e59599b1e13e7d9"
 }
