@@ -38,7 +38,7 @@ exports.sourceNodes = async (context, pluginOptions) => {
 
 	const config = {
 		namespace: `${login}/${repo}`,
-		yuquePath: path.join(cwd, `yuque.json`),
+		yuquePath: path.join(cwd, `yuque-${Date.now()}.json`),
 		baseUrl,
 		timeout,
 		token
