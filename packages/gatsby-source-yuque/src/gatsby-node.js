@@ -5,6 +5,7 @@ const { escapeSpecialCharacters } = require('./escape-special-characters')
 
 const cwd = process.cwd()
 const token = process.env.YUQUE_TOKEN
+const yuquePath = process.env.YUQUE_PATH
 
 const getAllArticles = require(`./download`)
 const { formatDate, formatArray } = require(`./utils`)
@@ -39,7 +40,7 @@ exports.sourceNodes = async (context, pluginOptions) => {
 
 	const config = {
 		namespace: `${login}/${repo}`,
-		yuquePath: path.join(cwd, `yuque-${getDate(new Date())}.json`),
+		yuquePath: yuquePath || path.join(cwd, `yuque-${getDate(new Date())}.json`),
 		baseUrl,
 		timeout,
 		token
