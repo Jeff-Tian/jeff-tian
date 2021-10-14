@@ -75,6 +75,15 @@ exports.createResolvers = async ({
 							createNodeId,
 							reporter,
 						})
+					}else{
+						return createRemoteFileNode({
+							url: 'https://images.ctfassets.net/qixg1o8tujmf/7m0jrKYaDBwEvlc5lo8nt6/6d50a5050d9cdc0d4d2047e35feac292/10648733_696750647079056_2800539603462658695_o.jpg',
+							store,
+							cache,
+							createNode,
+							createNodeId,
+							reporter,
+						})
 					}
 				},
 			},
