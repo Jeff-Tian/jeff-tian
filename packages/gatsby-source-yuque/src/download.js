@@ -165,3 +165,5 @@ module.exports = async function getAllArticles(context, yuqueConfig) {
 	await downloader.autoUpdate()
 	return downloader._cachedArticles
 }
+
+module.exports.YuqueClient = YuqueClient
