@@ -4,7 +4,7 @@
     "access": "public"
   },
   "description": "Source plugin for pulling data into Gatsby from [语雀](https://www.yuque.com) API.",
-  "version": "1.4.23",
+  "version": "1.5.0",
   "author": "Raincal <cyj94228@gmail.com>",
   "main": "index.js",
   "license": "MIT",
