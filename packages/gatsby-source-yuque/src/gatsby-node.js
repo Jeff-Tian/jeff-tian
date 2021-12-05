@@ -1,7 +1,7 @@
 const path = require(`path`)
 const process = require(`process`)
-const {createRemoteFileNode} = require(`gatsby-source-filesystem`)
-const {escapeSpecialCharacters} = require('./escape-special-characters')
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+const { escapeSpecialCharacters } = require('./escape-special-characters')
 const assert = require('assert')
 
 const cwd = process.cwd()

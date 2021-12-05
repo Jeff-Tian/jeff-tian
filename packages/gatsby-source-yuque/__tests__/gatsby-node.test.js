@@ -60,4 +60,8 @@ describe('gets yuque config', () => {
     assert(res.token === 'token')
     assert(res.yuquePath.endsWith('json'))
   })
+  
+  it('gets yuque config', () => {
+    assert.throws(() => getYuqueConfig({}), Error, "")
+  })
 })
