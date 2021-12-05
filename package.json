@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "husky": "^4.2.5",
+    "husky": "^7.0.1",
     "lerna": "^4.0.0"
   },
   "workspaces": [
