@@ -1,4 +1,4 @@
-const { sourceNode, sourceNodes } = require('../src/gatsby-node');
+const { sourceNode, sourceNodes, getYuqueConfig } = require('../src/gatsby-node');
 const assert = require('assert');
 
 const context = {
@@ -34,3 +34,9 @@ describe('source nodes', () => {
     assert.deepStrictEqual(article, {})
   })
 });
+
+describe('gets yuque config', () => {
+  it('gets yuque config', () => {
+    assert.throws(() => getYuqueConfig({}), Error, "")
+  })
+})
