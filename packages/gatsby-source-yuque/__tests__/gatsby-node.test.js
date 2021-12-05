@@ -1,4 +1,4 @@
-const { sourceNode, sourceNodes } = require('../src/gatsby-node');
+const { sourceNode, sourceNodes, getYuqueConfig } = require('../src/gatsby-node');
 const assert = require('assert');
 
 const context = {
@@ -34,3 +34,30 @@ describe('source nodes', () => {
     assert.deepStrictEqual(article, {})
   })
 });
+
+describe('gets yuque config', () => {
+  it('throws when login is not specified', () => {
+    assert.throws(() => getYuqueConfig({}), Error, "login in option is required")
+  })
+
+  it('throws when repo is not specified', () => {
+    assert.throws(() => getYuqueConfig({ login: 'hello' }), Error, "repo in option is required")
+  })
+
+  it('throws when TOKEN is missing', () => {
+    assert.throws(()=>getYuqueConfig({ login: 'hello', repo: 'world' }), Error, "token in option is required")
+  })
+
+  it('gets yuque config', ()=>{
+    process.env.YUQUE_TOKEN = 'token'
+
+    const res = getYuqueConfig({ login: 'hello', repo: 'world' })
+
+    assert(res !== null)
+    assert(res.baseUrl === 'https://www.yuque.com/api/v2/')
+    assert(res.namespace === 'hello/world')
+    assert(res.timeout === 10000)
+    assert(res.token === 'token')
+    assert(res.yuquePath.endsWith('json'))
+  })
+})

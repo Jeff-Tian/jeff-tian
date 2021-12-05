@@ -2,9 +2,9 @@ const path = require(`path`)
 const process = require(`process`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const { escapeSpecialCharacters } = require('./escape-special-characters')
+const assert = require('assert')
 
 const cwd = process.cwd()
-const token = process.env.YUQUE_TOKEN
 const yuquePath = process.env.YUQUE_PATH
 
 const getAllArticles = require(`./download`)
@@ -12,6 +12,7 @@ const { formatDate, formatArray } = require(`./utils`)
 const { getDate } = require('./get-date')
 
 const getYuqueConfig = pluginOptions => {
+	const token = process.env.YUQUE_TOKEN
 	const {
 		baseUrl = `https://www.yuque.com/api/v2/`,
 		login = ``,
@@ -37,6 +38,7 @@ const getYuqueConfig = pluginOptions => {
 	return yuqueConfig
 }
 
+exports.getYuqueConfig = getYuqueConfig
 exports.sourceNode = async (context, pluginOptions, slug) => {
 	const { reporter } = context
 
