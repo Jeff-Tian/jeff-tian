@@ -27,14 +27,12 @@ class YuqueClient {
 
 	async getArticles() {
 		const api = `/docs`
-		const result = await this._fetch(api)
-		return result
+		return await this._fetch(api)
 	}
 
 	async getArticle(slug) {
 		const api = `/docs/${slug}?raw=1`
-		const result = await this._fetch(api)
-		return result
+		return await this._fetch(api)
 	}
 }
 
