@@ -1,6 +1,7 @@
 const axios = require(`axios`)
 const debug = require(`./debug`)
 const UpstreamError = require("./upstream-error");
+const assert = require("assert");
 
 class YuqueClient {
     constructor(config) {
@@ -8,7 +9,10 @@ class YuqueClient {
     }
 
     async _fetch(api) {
-        const {baseUrl, namespace, timeout, token} = this.config
+        const {baseUrl, namespace, timeout = 10000, token} = this.config
+
+        assert.ok(token ,'token for config must be present')
+
         const path = `${baseUrl}repos/${namespace}${api}`
         const options = {
             url: path,
