@@ -45,10 +45,10 @@ describe('gets yuque config', () => {
   })
 
   it('throws when TOKEN is missing', () => {
-    assert.throws(()=>getYuqueConfig({ login: 'hello', repo: 'world' }), Error, "token in option is required")
+    assert.throws(() => getYuqueConfig({ login: 'hello', repo: 'world' }), Error, "token in option is required")
   })
 
-  it('gets yuque config', ()=>{
+  it('gets yuque config', () => {
     process.env.YUQUE_TOKEN = 'token'
 
     const res = getYuqueConfig({ login: 'hello', repo: 'world' })
@@ -60,8 +60,17 @@ describe('gets yuque config', () => {
     assert(res.token === 'token')
     assert(res.yuquePath.endsWith('json'))
   })
-  
+
   it('gets yuque config', () => {
     assert.throws(() => getYuqueConfig({}), Error, "")
+  })
+
+  it('supports readCache and writeCache for getting yuque config', () => {
+    process.env.YUQUE_PATH = 'path'
+
+    const context = { readCache: () => { }, writeCache: () => { }, login: 'login', repo: 'repo' };
+    const yuqueConfig = getYuqueConfig(context)
+
+    assert.deepStrictEqual(yuqueConfig, { "baseUrl": "https://www.yuque.com/api/v2/", "namespace": "login/repo", "timeout": 10000, "token": "token", yuquePath: 'path', readCache: context.readCache, writeCache: context.writeCache })
   })
 })

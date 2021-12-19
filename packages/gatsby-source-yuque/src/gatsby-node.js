@@ -5,7 +5,6 @@ const { escapeSpecialCharacters } = require('./escape-special-characters')
 const assert = require('assert')
 
 const cwd = process.cwd()
-const yuquePath = process.env.YUQUE_PATH
 
 const getAllArticles = require(`./download`)
 const {formatDate, formatArray} = require(`./utils`)
@@ -13,12 +12,15 @@ const {getDate} = require('./get-date')
 
 const getYuqueConfig = pluginOptions => {
     const token = process.env.YUQUE_TOKEN
+    const yuquePath = process.env.YUQUE_PATH
     const {
         baseUrl = `https://www.yuque.com/api/v2/`,
         login = ``,
         repo = ``,
         mdNameFormat = `title`,
-        timeout = 10000
+        timeout = 10000,
+        readCache = undefined,
+        writeCache = undefined,
     } = pluginOptions
 
     delete pluginOptions.plugins
@@ -32,7 +34,9 @@ const getYuqueConfig = pluginOptions => {
         yuquePath: yuquePath || path.join(cwd, `yuque-${getDate(new Date())}.json`),
         baseUrl,
         timeout,
-        token
+        token,
+        readCache,
+        writeCache
     }
 
     return yuqueConfig
