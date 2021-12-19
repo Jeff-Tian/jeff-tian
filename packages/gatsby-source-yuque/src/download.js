@@ -116,7 +116,7 @@ class Downloader {
         return new Promise((resolve, reject) => {
             queue.start(function (err) {
                 if (err) return reject(err)
-                reporter.info(`download articls done!`)
+                reporter.info(`download articles done!`)
                 resolve()
             })
         })
@@ -179,3 +179,4 @@ module.exports = async function getAllArticles(context, yuqueConfig) {
 }
 
 module.exports.YuqueClient = YuqueClient
+module.exports.Downloader = Downloader
