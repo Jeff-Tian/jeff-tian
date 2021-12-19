@@ -9,11 +9,21 @@ describe('Downloader', () => {
         assert.deepStrictEqual(typeof res.getArticle, 'function')
     })
 
-    it('reads cache from path', async () => {
+    describe('cache', () => {
+        const config = { login: 'fake', repo: 'fake' }
         const yuquePath = path.resolve(__dirname, './fixtures/yuque.json');
-        const length = require(yuquePath).length
 
-        const res = await download({login: 'fake', repo: 'fake'}, {yuquePath, token: '1234'})
-        assert.equal(res.length, length)
+        it('reads cache from path', async () => {
+            const length = require(yuquePath).length
+
+            const res = await download(config, { yuquePath, token: '1234' })
+            assert.equal(res.length, length)
+        })
+
+        it('reads cache from customized function', async () => {
+            const readCache = async () => [{}]
+            const res = await download(config, { yuquePath, readCache, token: '1234' })
+            assert.equal(res.length, 1)
+        })
     })
 })

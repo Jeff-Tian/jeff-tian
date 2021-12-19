@@ -2,7 +2,7 @@ const fs = require(`fs`)
 const R = require(`ramda`)
 const Queue = require(`queue`)
 
-const {parseMatter, renameKeys} = require(`./utils`)
+const { parseMatter, renameKeys } = require(`./utils`)
 const YuqueClient = require(`./yuque`)
 
 // 需要提取的文章属性字段
@@ -47,14 +47,14 @@ class Downloader {
      * @return {Promise} data
      */
     fetchArticle(item, index) {
-        const {client, _cachedArticles, reporter} = this
+        const { client, _cachedArticles, reporter } = this
         return function () {
             reporter.info(`download article body: ${item.title}`)
-            return client.getArticle(item.slug).then(({data: article}) => {
+            return client.getArticle(item.slug).then(({ data: article }) => {
                 const cachedArticle = _cachedArticles[index]
                 // matter 解析
                 const parseRet = parseMatter(article.body, reporter)
-                const source = {...item, ...parseRet}
+                const source = { ...item, ...parseRet }
                 const newArticle = R.merge(cachedArticle, source)
                 _cachedArticles[index] = newArticle
             })
@@ -68,18 +68,18 @@ class Downloader {
      * @return {Promise} queue
      */
     async fetchArticles() {
-        const {_cachedArticles, reporter} = this
+        const { _cachedArticles, reporter } = this
         const articles = await this.client.getArticles()
 
         const realArticles = R.compose(
             R.map(R.compose(
-                renameKeys({published_at: `updated_at`, first_published_at: `created_at`}),
+                renameKeys({ published_at: `updated_at`, first_published_at: `created_at` }),
                 R.pick(PICK_PROPERTY)
             )),
             R.filter(article => article.first_published_at)
         )(articles.data)
 
-        const queue = new Queue({concurrency: 5})
+        const queue = new Queue({ concurrency: 5 })
 
         let article
         let cacheIndex
@@ -125,16 +125,24 @@ class Downloader {
     /**
      * 读取语雀的文章缓存 json 文件
      */
-    readYuqueCache() {
-        const {yuquePath} = this
+    async readYuqueCache() {
+        const { yuquePath, yuqueConfig } = this
         try {
-            const articles = require(yuquePath)
-            if (Array.isArray(articles)) {
+            const { readCache } = yuqueConfig
+            if (typeof readCache === 'function') {
+                const articles = await readCache()
                 this._cachedArticles = articles
                 return
+            } else {
+                const articles = require(yuquePath)
+                if (Array.isArray(articles)) {
+                    this._cachedArticles = articles
+                    return
+                }
             }
         } catch (error) {
             // Do noting
+            console.error(error)
         }
         this._cachedArticles = []
     }
@@ -143,7 +151,7 @@ class Downloader {
      * 写入语雀的文章缓存 json 文件
      */
     writeYuqueCache() {
-        const {yuquePath, _cachedArticles, reporter} = this
+        const { yuquePath, _cachedArticles, reporter } = this
         if (this._needUpdate) {
             reporter.info(`writing to local file: ${yuquePath}`)
             fs.writeFileSync(yuquePath, JSON.stringify(_cachedArticles, null, 2), {
@@ -154,7 +162,7 @@ class Downloader {
 
     // 文章下载 => 增量更新文章到缓存 json 文件
     async autoUpdate() {
-        this.readYuqueCache()
+        await this.readYuqueCache()
         await this.fetchArticles()
         this.writeYuqueCache()
     }
@@ -165,7 +173,7 @@ module.exports = async function getAllArticles(context, yuqueConfig) {
     try {
         await downloader.autoUpdate()
     } catch (ex) {
-		console.error(ex)
+        console.error(ex)
     }
     return downloader._cachedArticles
 }
