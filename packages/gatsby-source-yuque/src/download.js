@@ -150,13 +150,19 @@ class Downloader {
     /**
      * 写入语雀的文章缓存 json 文件
      */
-    writeYuqueCache() {
-        const { yuquePath, _cachedArticles, reporter } = this
+    async writeYuqueCache() {
+        const { yuquePath, _cachedArticles, reporter, yuqueConfig } = this
         if (this._needUpdate) {
-            reporter.info(`writing to local file: ${yuquePath}`)
-            fs.writeFileSync(yuquePath, JSON.stringify(_cachedArticles, null, 2), {
-                encoding: `UTF8`
-            })
+            const { writeCache } = yuqueConfig
+            if (typeof writeCache === 'function') {
+                await writeCache(_cachedArticles)
+                reporter.info(`write cache done!`)
+            } else {
+                reporter.info(`writing to local file: ${yuquePath}`)
+                fs.writeFileSync(yuquePath, JSON.stringify(_cachedArticles, null, 2), {
+                    encoding: `UTF8`
+                })
+            }
         }
     }
 
@@ -164,7 +170,7 @@ class Downloader {
     async autoUpdate() {
         await this.readYuqueCache()
         await this.fetchArticles()
-        this.writeYuqueCache()
+        await this.writeYuqueCache()
     }
 }
 

@@ -36,5 +36,15 @@ describe('Downloader', () => {
             const length = require(yuquePath).length
             assert.equal(sut._cachedArticles.length, length)
         })
+
+        it('writes cache using customized function', async()=>{
+            const cache = []
+            const sut = new download.Downloader(context, { yuquePath, token: '1234', writeCache: async()=>{
+                cache.push('something')
+            } })
+            sut._needUpdate = true
+            await sut.writeYuqueCache()
+            assert.equal(cache.length, 1)
+        })
     })
 })
