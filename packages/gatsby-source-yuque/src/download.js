@@ -84,14 +84,14 @@ class Downloader {
         let article
         let cacheIndex
         let cacheArticle
-        let cacheAvaliable
+        let cacheAvailable
 
         const findIndexFn = function (item) {
             return item.id === article.id
         }
 
-        for (let i = 0; i < realArticles.length; i++) {
-            article = realArticles[i]
+        realArticles.forEach(realArticle => {
+            article = realArticle
             cacheIndex = _cachedArticles.findIndex(findIndexFn)
             if (cacheIndex < 0) {
                 // 未命中缓存，新增一条
@@ -102,16 +102,16 @@ class Downloader {
                 queue.push(this.fetchArticle(article, cacheIndex))
             } else {
                 cacheArticle = _cachedArticles[cacheIndex]
-                cacheAvaliable =
+                cacheAvailable =
                     +new Date(article.updated_at) === +new Date(cacheArticle.updated_at)
-                if (!cacheAvaliable) {
+                if (!cacheAvailable) {
                     this._needUpdate = true
                     // 文章有变更，更新缓存
                     reporter.info(`update article: ${article.title}`)
                     queue.push(this.fetchArticle(article, cacheIndex))
                 }
             }
-        }
+        });
 
         return new Promise((resolve, reject) => {
             queue.start(function (err) {
