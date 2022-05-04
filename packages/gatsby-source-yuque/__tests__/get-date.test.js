@@ -6,6 +6,6 @@ describe('get date', () => {
     const dateTime = new Date(2021, 10, 3, 15, 0, 0, 0)
 
     const date = getDate(dateTime)
-    assert.deepStrictEqual(date, '2021-10-3')
+    assert.deepStrictEqual(date, '2021-11-3')
   })
 })
