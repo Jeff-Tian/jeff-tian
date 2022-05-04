@@ -1,2 +1,2 @@
 module.exports.getDate = (dateTime) => dateTime.getFullYear() + '-' +
-    dateTime.getMonth() + '-' + dateTime.getDate()
+    (dateTime.getMonth() + 1) + '-' + dateTime.getDate()

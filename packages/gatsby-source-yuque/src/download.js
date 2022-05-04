@@ -1,9 +1,9 @@
-const fs = require(`fs`)
-const R = require(`ramda`)
-const Queue = require(`queue`)
+const fs = require(`fs`);
+const R = require(`ramda`);
+const Queue = require(`queue`);
 
-const { parseMatter, renameKeys } = require(`./utils`)
-const YuqueClient = require(`./yuque`)
+const {parseMatter, renameKeys} = require(`./utils`);
+const YuqueClient = require(`./yuque`);
 
 // 需要提取的文章属性字段
 const PICK_PROPERTY = [
@@ -16,7 +16,7 @@ const PICK_PROPERTY = [
     `slug`,
     `word_count`,
     `cover`
-]
+];
 
 /**
  * Constructor 下载器
@@ -30,12 +30,12 @@ const PICK_PROPERTY = [
  */
 class Downloader {
     constructor(context, yuqueConfig) {
-        this.client = new YuqueClient(yuqueConfig)
-        this.reporter = context.reporter
-        this.yuqueConfig = yuqueConfig
-        this.yuquePath = yuqueConfig.yuquePath
-        this._cachedArticles = []
-        this._needUpdate = false
+        this.client = new YuqueClient(yuqueConfig);
+        this.reporter = context.reporter;
+        this.yuqueConfig = yuqueConfig;
+        this.yuquePath = yuqueConfig.yuquePath;
+        this._cachedArticles = [];
+        this._needUpdate = false;
     }
 
     /**
@@ -47,18 +47,18 @@ class Downloader {
      * @return {Promise} data
      */
     fetchArticle(item, index) {
-        const { client, _cachedArticles, reporter } = this
+        const {client, _cachedArticles, reporter} = this;
         return function () {
-            reporter.info(`download article body: ${item.title}`)
-            return client.getArticle(item.slug).then(({ data: article }) => {
-                const cachedArticle = _cachedArticles[index]
+            reporter.info(`download article body: ${item.title}`);
+            return client.getArticle(item.slug).then(({data: article}) => {
+                const cachedArticle = _cachedArticles[index];
                 // matter 解析
-                const parseRet = parseMatter(article.body, reporter)
-                const source = { ...item, ...parseRet }
-                const newArticle = R.merge(cachedArticle, source)
-                _cachedArticles[index] = newArticle
-            })
-        }
+                const parseRet = parseMatter(article.body, reporter);
+                const source = {...item, ...parseRet};
+                const newArticle = R.merge(cachedArticle, source);
+                _cachedArticles[index] = newArticle;
+            });
+        };
     }
 
     /**
@@ -68,121 +68,124 @@ class Downloader {
      * @return {Promise} queue
      */
     async fetchArticles() {
-        const { _cachedArticles, reporter } = this
-        const articles = await this.client.getArticles()
+        const {_cachedArticles, reporter} = this;
+        const articles = await this.client.getArticles();
 
         const realArticles = R.compose(
             R.map(R.compose(
-                renameKeys({ published_at: `updated_at`, first_published_at: `created_at` }),
+                renameKeys({published_at: `updated_at`, first_published_at: `created_at`}),
                 R.pick(PICK_PROPERTY)
             )),
             R.filter(article => article.first_published_at)
-        )(articles.data)
+        )(articles.data);
 
-        const queue = new Queue({ concurrency: 5 })
+        const queue = new Queue({concurrency: 5});
 
-        let article
-        let cacheIndex
-        let cacheArticle
-        let cacheAvailable
+        let article;
+        let cacheIndex;
+        let cacheArticle;
+        let cacheAvailable;
 
         const findIndexFn = function (item) {
-            return item.id === article.id
-        }
+            return item.id === article.id;
+        };
 
         realArticles.forEach(realArticle => {
-            article = realArticle
-            cacheIndex = _cachedArticles.findIndex(findIndexFn)
+            article = realArticle;
+            cacheIndex = _cachedArticles.findIndex(findIndexFn);
             if (cacheIndex < 0) {
                 // 未命中缓存，新增一条
-                reporter.info(`add new article: ${article.title}`)
-                cacheIndex = _cachedArticles.length
-                _cachedArticles.push(article)
-                this._needUpdate = true
-                queue.push(this.fetchArticle(article, cacheIndex))
+                reporter.info(`add new article: ${article.title}`);
+                cacheIndex = _cachedArticles.length;
+                _cachedArticles.push(article);
+                this._needUpdate = true;
+                queue.push(this.fetchArticle(article, cacheIndex));
             } else {
-                cacheArticle = _cachedArticles[cacheIndex]
+                cacheArticle = _cachedArticles[cacheIndex];
                 cacheAvailable =
-                    +new Date(article.updated_at) === +new Date(cacheArticle.updated_at)
+                    +new Date(article.updated_at) === +new Date(cacheArticle.updated_at);
                 if (!cacheAvailable) {
-                    this._needUpdate = true
+                    this._needUpdate = true;
                     // 文章有变更，更新缓存
-                    reporter.info(`update article: ${article.title}`)
-                    queue.push(this.fetchArticle(article, cacheIndex))
+                    reporter.info(`update article: ${article.title}`);
+                    queue.push(this.fetchArticle(article, cacheIndex));
                 }
             }
         });
 
         return new Promise((resolve, reject) => {
             queue.start(function (err) {
-                if (err) return reject(err)
-                reporter.info(`download articles done!`)
-                resolve()
-            })
-        })
+                if (err) {
+                    return reject(err);
+                }
+                reporter.info(`download articles done!`);
+                resolve();
+            });
+        });
     }
 
     /**
      * 读取语雀的文章缓存 json 文件
      */
     async readYuqueCache() {
-        const { yuquePath, yuqueConfig } = this
+        const {yuquePath, yuqueConfig} = this;
         try {
-            const { readCache } = yuqueConfig
+            const {readCache} = yuqueConfig;
             if (typeof readCache === 'function') {
-                const articles = await readCache()
-                this._cachedArticles = articles
-                return
+                this._cachedArticles = await readCache();
+                return;
             } else {
-                const articles = require(yuquePath)
-                if (Array.isArray(articles)) {
-                    this._cachedArticles = articles
-                    return
+                if (fs.existsSync(yuquePath)) {
+                    const articles = require(yuquePath);
+                    if (Array.isArray(articles)) {
+                        this._cachedArticles = articles;
+                        return;
+                    }
                 }
             }
         } catch (error) {
-            // Do noting
-            console.error(error)
+            // Do nothing
+            console.error(error);
         }
-        this._cachedArticles = []
+        this._cachedArticles = [];
     }
 
     /**
      * 写入语雀的文章缓存 json 文件
      */
     async writeYuqueCache() {
-        const { yuquePath, _cachedArticles, reporter, yuqueConfig } = this
+        const {yuquePath, _cachedArticles, reporter, yuqueConfig} = this;
         if (this._needUpdate) {
-            const { writeCache } = yuqueConfig
+            const {writeCache} = yuqueConfig;
             if (typeof writeCache === 'function') {
-                await writeCache(_cachedArticles)
-                reporter.info(`write cache done!`)
+                await writeCache(_cachedArticles);
+                reporter.info(`write cache done!`);
             } else {
-                reporter.info(`writing to local file: ${yuquePath}`)
+                reporter.info(`writing to local file: ${yuquePath}`);
                 fs.writeFileSync(yuquePath, JSON.stringify(_cachedArticles, null, 2), {
                     encoding: `UTF8`
-                })
+                });
             }
         }
     }
 
     // 文章下载 => 增量更新文章到缓存 json 文件
     async autoUpdate() {
-        await this.readYuqueCache()
-        await this.fetchArticles()
-        await this.writeYuqueCache()
+        await this.readYuqueCache();
+        await this.fetchArticles();
+        await this.writeYuqueCache();
     }
 }
 
 module.exports = async function getAllArticles(context, yuqueConfig) {
-    const downloader = new Downloader(context, yuqueConfig)
+    const downloader = new Downloader(context, yuqueConfig);
     try {
-        await downloader.autoUpdate()
+        await downloader.autoUpdate();
     } catch (ex) {
-        console.error(ex)
+        console.error(ex);
     }
-    return downloader._cachedArticles
-}
+    return downloader._cachedArticles;
+};
 
-module.exports.YuqueClient = YuqueClient
-module.exports.Downloader = Downloader
+module.exports.YuqueClient = YuqueClient;
+module.exports.Downloader = Downloader;
