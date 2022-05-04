@@ -1,66 +1,9 @@
-const path = require(`path`)
-const process = require(`process`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const { escapeSpecialCharacters } = require('./escape-special-characters')
-const assert = require('assert')
-
-const cwd = process.cwd()
 
 const getAllArticles = require(`./download`)
 const {formatDate, formatArray} = require(`./utils`)
-const {getDate} = require('./get-date')
-
-const getYuqueConfig = pluginOptions => {
-    const token = process.env.YUQUE_TOKEN
-    const yuquePath = process.env.YUQUE_PATH
-    const {
-        baseUrl = `https://www.yuque.com/api/v2/`,
-        login = ``,
-        repo = ``,
-        mdNameFormat = `title`,
-        timeout = 10000,
-        readCache = undefined,
-        writeCache = undefined,
-    } = pluginOptions
-
-    delete pluginOptions.plugins
-
-    assert.ok(login, 'login in option is required')
-    assert.ok(repo, 'repo in option is required')
-    assert.ok(token, 'TOKEN of yuque (YUQUE_TOKEN in env) is required.')
-
-    const yuqueConfig = {
-        namespace: `${login}/${repo}`,
-        yuquePath: yuquePath || path.join(cwd, `yuque-${getDate(new Date())}.json`),
-        baseUrl,
-        timeout,
-        token,
-        readCache,
-        writeCache
-    }
-
-    return yuqueConfig
-}
-
-exports.getYuqueConfig = getYuqueConfig
-
-const source = (sourcing, emptyResult, ...args) => async (context, pluginOptions) => {
-    const {reporter} = context
-
-    try {
-        const yuqueConfig = getYuqueConfig(pluginOptions)
-        const yuqueClient = new getAllArticles.YuqueClient(yuqueConfig)
-
-        return yuqueClient[sourcing](...args)
-    } catch (ex) {
-        reporter.error(ex)
-
-        return emptyResult
-    }
-}
-
-exports.sourceNode = (context, pluginOptions, slug) => source('getArticle', {}, slug)(context, pluginOptions)
-exports.sourceAllNodes = source('getArticles', [])
+const {getYuqueConfig} = require("./helpers");
 
 exports.sourceNodes = async (context, pluginOptions) => {
     const {
@@ -74,7 +17,7 @@ exports.sourceNodes = async (context, pluginOptions) => {
         const yuqueConfig = getYuqueConfig(pluginOptions)
         const articles = await getAllArticles(context, yuqueConfig)
 
-        articles.forEach(createArticle(mdNameFormat, createNodeId, createContentDigest, createNode))
+        articles.forEach(createArticle(yuqueConfig.mdNameFormat, createNodeId, createContentDigest, createNode))
 
         return articles
     } catch (ex) {
