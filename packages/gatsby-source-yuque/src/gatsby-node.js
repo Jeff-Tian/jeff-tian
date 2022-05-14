@@ -89,6 +89,7 @@ ${escapeSpecialCharacters(article.body)}`
             body: escapeSpecialCharacters(article.body),
             id: createNodeId(`yuque-doc-${article.id}`),
             slug,
+
             parent: null,
             children: [],
             internal: {

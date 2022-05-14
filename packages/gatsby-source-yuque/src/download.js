@@ -44,7 +44,7 @@ class Downloader {
      * @param {Object} item 文章概要
      * @param {Number} index 所在缓存数组的下标
      *
-     * @return {Promise} data
+     * @return {function(): Promise<T>} data
      */
     fetchArticle(item, index) {
         const {client, _cachedArticles, reporter} = this;

@@ -1,0 +1,86 @@
+{
+  "_args": [
+    [
+      "@jeff-tian/gitbook-cli@2.3.8",
+      "/Users/cnjeftia/jeff-tian/sicp"
+    ]
+  ],
+  "_development": true,
+  "_from": "@jeff-tian/gitbook-cli@2.3.8",
+  "_id": "@jeff-tian/gitbook-cli@2.3.8",
+  "_inBundle": false,
+  "_integrity": "sha512-w412Egi2zRncJooPOQIZlfx9BD77slSjgOm9v7Qv2rVh1dVDNvMgNc3j1HwILqso0OVOijvgD/JM4N7/7zC9mA==",
+  "_location": "/@jeff-tian/gitbook-cli",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@jeff-tian/gitbook-cli@2.3.8",
+    "name": "@jeff-tian/gitbook-cli",
+    "escapedName": "@jeff-tian%2fgitbook-cli",
+    "scope": "@jeff-tian",
+    "rawSpec": "2.3.8",
+    "saveSpec": null,
+    "fetchSpec": "2.3.8"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@jeff-tian/gitbook-cli/-/gitbook-cli-2.3.8.tgz",
+  "_spec": "2.3.8",
+  "_where": "/Users/cnjeftia/jeff-tian/sicp",
+  "author": {
+    "name": "FriendCode Inc.",
+    "email": "contact@gitbook.com"
+  },
+  "bin": {
+    "gitbook": "./bin/gitbook.js"
+  },
+  "bugs": {
+    "url": "https://github.com/Jeff-Tian/gitbook-cli/issues"
+  },
+  "contributors": [
+    {
+      "name": "Aaron O'Mullan",
+      "email": "aaron@gitbook.com"
+    },
+    {
+      "name": "Samy Pessé",
+      "email": "samy@gitbook.com"
+    }
+  ],
+  "dependencies": {
+    "bash-color": "0.0.4",
+    "commander": "2.11.0",
+    "fs-extra": "3.0.1",
+    "lodash": "4.17.4",
+    "npm": "5.1.0",
+    "npmi": "1.0.1",
+    "optimist": "0.6.1",
+    "q": "1.5.0",
+    "semver": "5.3.0",
+    "tmp": "0.0.31",
+    "user-home": "2.0.0"
+  },
+  "description": "CLI to generate books and documentation using gitbook",
+  "devDependencies": {
+    "@jeff-tian/gitbook": "^3.2.4",
+    "mocha": "3.4.2",
+    "should": "11.2.1"
+  },
+  "homepage": "https://www.gitbook.com",
+  "license": "Apache-2.0",
+  "main": "bin/gitbook.js",
+  "name": "@jeff-tian/gitbook-cli",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jeff-Tian/gitbook-cli.git"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec --recursive --bail"
+  },
+  "version": "2.3.8"
+}
