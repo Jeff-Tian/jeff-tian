@@ -133,5 +133,6 @@
   "_shasum": "25b976570207ae52e5fcea09dc18873bf7e1df09",
   "_resolved": "https://registry.npmjs.org/@jeff-tian/gitbook/-/gitbook-3.2.4.tgz",
   "_from": "@jeff-tian/gitbook@latest",
-  "readme": "ERROR: No README data found!"
+  "readme": "ERROR: No README data found!",
+  "gitHead": "2e0c986646067ef080cae3a74e14a570ef0276b4"
 }

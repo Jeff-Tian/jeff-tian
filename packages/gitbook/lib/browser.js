@@ -23,4 +23,5 @@ module.exports = {
     DEFAULT_PLUGINS:     require('./constants/defaultPlugins'),
     EXTENSIONS_MARKDOWN: require('./constants/extsMarkdown'),
     EXTENSIONS_ASCIIDOC: require('./constants/extsAsciidoc')
+
 };
