@@ -77,6 +77,6 @@ module.exports = {
     isValid: isValid,
     sort: sortTags,
     satisfies: satisfies,
-    getTag: getTag
-    
+    getTag: getTag,
+
 };

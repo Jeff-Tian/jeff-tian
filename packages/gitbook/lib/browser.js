@@ -22,6 +22,6 @@ module.exports = {
     IGNORE_FILES:        require('./constants/ignoreFiles.js'),
     DEFAULT_PLUGINS:     require('./constants/defaultPlugins'),
     EXTENSIONS_MARKDOWN: require('./constants/extsMarkdown'),
-    EXTENSIONS_ASCIIDOC: require('./constants/extsAsciidoc')
+    EXTENSIONS_ASCIIDOC: require('./constants/extsAsciidoc'),
 
 };
