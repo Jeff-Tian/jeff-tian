@@ -64,7 +64,7 @@
   },
   "description": "CLI to generate books and documentation using gitbook",
   "devDependencies": {
-    "@jeff-tian/gitbook": "^3.2.4",
+    "@jeff-tian/gitbook": "^1.8.0",
     "mocha": "3.4.2",
     "should": "11.2.1"
   },
@@ -82,5 +82,5 @@
   "scripts": {
     "test": "mocha --reporter spec --recursive --bail"
   },
-  "version": "2.3.8"
+  "version": "1.8.0"
 }
