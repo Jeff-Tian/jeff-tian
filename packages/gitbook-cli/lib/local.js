@@ -14,7 +14,6 @@ var tags = require('./tags');
 // Return a list of all available versions on this system
 function listVersions() {
     var folders = fs.readdirSync(config.VERSIONS_ROOT);
-    var latest = null;
 
     return _.chain(folders)
         .map(function(tag) {
@@ -69,6 +68,7 @@ function versionRoot(version) {
 // Resolve a version using a condition
 function resolveVersion(condition) {
     var versions = listVersions();
+    console.lg('versions = ', versions);
     var version = _.chain(versions)
         .find(function(v) {
             return tags.satisfies(v.name, condition);
