@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.8.1",
+  "version": "1.8.5",
   "homepage": "https://legacy.gitbook.com/",
   "description": "Library and cmd utility to generate GitBooks",
   "main": "lib/index.js",

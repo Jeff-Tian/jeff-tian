@@ -4,7 +4,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "3.0.0",
+    "version": "1.8.5",
     "icon": "./icon.png",
     "description": "Integrate your website with your GitHub repository.",
     "main": "index.js",
@@ -19,9 +19,9 @@
         }
     ],
     "devDependencies": {
-      "gitbook-plugin": "^4.0.0-alpha.0",
-      "eslint": "^3.7.1",
-      "eslint-config-gitbook": "^1.5.0"
+        "eslint": "^3.7.1",
+        "eslint-config-gitbook": "^1.5.0",
+        "gitbook-plugin": "^4.0.0-alpha.0"
     },
     "repository": {
         "type": "git",
@@ -32,11 +32,11 @@
         "gitbook": ">=1.8.2"
     },
     "keywords": [
-      "gitbook:social"
+        "gitbook:social"
     ],
     "scripts": {
-      "build-js": "gitbook-plugin build ./src/index.js ./_assets/plugin.js",
-      "prepublish": "npm run build-js"
+        "build-js": "gitbook-plugin build ./src/index.js ./_assets/plugin.js",
+        "prepublish": "npm run build-js"
     },
     "gitbook": {
         "properties": {
