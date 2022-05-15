@@ -1,0 +1,34 @@
+{
+  "name": "@jeff-tian/gitbook-plugin-klipse",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.2.0",
+  "description": "A klipse plugin for gitbook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brian-dawn/gitbook-plugin-klipse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brian-dawn/gitbook-plugin-klipse/issues"
+  },
+  "homepage": "https://github.com/brian-dawn/gitbook-plugin-klipse#readme",
+  "engines": {
+    "gitbook": ">=1.8.4"
+  },
+  "gitbook": {
+    "properties": {
+      "myConfigKey": {
+        "type": "string",
+        "default": "it's the default value",
+        "description": "It defines my awesome config!"
+      }
+    }
+  }
+}
