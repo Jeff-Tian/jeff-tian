@@ -1,0 +1,52 @@
+{
+    "name": "gitbook-plugin-edit-link",
+    "description": "GitBook Plugin to add \"Edit this page\" link on every page. Link target will be that page's source file on Github or Gitlab or any repo.",
+    "main": "index.js",
+    "version": "1.8.2",
+    "author": "rtCamp <admin@rtcamp.com>",
+    "contributors": [
+        {
+            "name": "Rahul Bansal",
+            "email": "rahul.bansal@rtcamp.com"
+        },
+        {
+            "name": "Samy Pessé",
+            "email": "samy@gitbook.com"
+        }
+    ],
+    "engines": {
+        "gitbook": ">=1.8.1"
+    },
+    "homepage": "https://github.com/rtCamp/gitbook-plugin-edit-link",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rtCamp/gitbook-plugin-edit-link.git"
+    },
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/rtCamp/gitbook-plugin-edit-link/issues"
+    },
+    "keywords": [
+        "gitbook",
+        "plugin",
+        "edit-with",
+        "github"
+    ],
+    "gitbook": {
+        "properties": {
+            "base": {
+                "type": "string",
+                "title": "Base for the edit redirection",
+                "required": true
+            },
+            "label": {
+                "type": [
+                    "string",
+                    "object"
+                ],
+                "title": "Label for the edit button",
+                "default": "Edit This Page"
+            }
+        }
+    }
+}

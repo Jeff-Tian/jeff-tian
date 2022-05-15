@@ -13,7 +13,7 @@
     "bootstrap": "lerna bootstrap",
     "test": "lerna run test",
     "build": "lerna run build",
-    "pub": "lerna bootstrap && lerna publish && git push --tags",
+    "pub": "lerna bootstrap && lerna publish && git push && git push --tags",
     "re-pub": "lerna publish --from-git",
     "repub": "lerna publish from-package",
     "ls": "lerna ls"
