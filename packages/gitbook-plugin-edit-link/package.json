@@ -2,6 +2,9 @@
     "name": "@jeff-tian/gitbook-plugin-edit-link",
     "description": "GitBook Plugin to add \"Edit this page\" link on every page. Link target will be that page's source file on Github or Gitlab or any repo.",
     "main": "index.js",
+    "publishConfig": {
+        "access": "public"
+    },
     "version": "1.8.3",
     "author": "rtCamp <admin@rtcamp.com>",
     "contributors": [
@@ -48,5 +51,6 @@
                 "default": "Edit This Page"
             }
         }
-    }
+    },
+    "gitHead": "a7259391092e9a8b196b2cf891b4375225e3d476"
 }
