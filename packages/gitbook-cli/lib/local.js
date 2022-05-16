@@ -68,7 +68,7 @@ function versionRoot(version) {
 // Resolve a version using a condition
 function resolveVersion(condition) {
     var versions = listVersions();
-    console.lg('versions = ', versions);
+    console.log('versions = ', versions);
     var version = _.chain(versions)
         .find(function(v) {
             return tags.satisfies(v.name, condition);
