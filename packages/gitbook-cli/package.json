@@ -82,6 +82,6 @@
   "scripts": {
     "test": "mocha --reporter spec --recursive --bail"
   },
-  "version": "1.8.8",
+  "version": "1.8.9",
   "gitHead": "2e0c986646067ef080cae3a74e14a570ef0276b4"
 }
