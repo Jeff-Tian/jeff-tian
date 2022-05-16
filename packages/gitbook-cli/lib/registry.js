@@ -24,6 +24,7 @@ function availableVersions() {
             return Q.nfcall(npm.commands.view, ['@jeff-tian/gitbook', 'versions', 'dist-tags'], true);
         })
         .then(function (result) {
+            console.log('available = ', result);
             result = _.chain(result).values().first().value();
             result = {
                 versions: _.chain(result.versions)
@@ -70,7 +71,7 @@ function resolveVersion(version) {
 function installVersion(version, forceInstall) {
     return resolveVersion(version)
         .then(function (_version) {
-            console.log('resolved version = ', _version);
+            console.log('resolved version from ', version, ' to = ', _version);
 
             version = _version;
             return Q.nfcall(tmp.dir.bind(tmp));

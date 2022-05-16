@@ -35,7 +35,7 @@ module.exports = {
     init: init,
     setRoot: setRoot,
 
-    GITBOOK_VERSION: '>1.x.x',
+    GITBOOK_VERSION: '>=1.8.5',
     ROOT: CONFIG_ROOT,
     VERSIONS_ROOT: VERSIONS_ROOT
 };

@@ -11,11 +11,13 @@ function isTag(version) {
 
 // Return true if a version matches gitbook-cli's requirements
 function isValid(version) {
+    console.log('checking version ', version);
     if (isTag(version)) return true;
 
     var versionWithoutPre = version.replace(/\-(\S+)/g, '');
 
     try {
+        console.log('satisfies ?', versionWithoutPre);
         return semver.satisfies(versionWithoutPre, config.GITBOOK_VERSION);
     } catch(e) {
         return false;
