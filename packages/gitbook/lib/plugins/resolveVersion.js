@@ -31,8 +31,10 @@ function initNPM() {
     @return {Promise<String>}
 */
 function resolveVersion(plugin) {
+    console.log('resolve version for ', plugin.getName());
     var npmId = Plugin.nameToNpmID(plugin.getName());
     var requiredVersion = plugin.getVersion();
+    console.log('required version = ', requiredVersion, plugin.isGitDependency());
 
     if (plugin.isGitDependency()) {
         return Promise.resolve(requiredVersion);
