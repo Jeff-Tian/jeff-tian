@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.8.5",
+  "version": "2.0.0",
   "license": "MIT",
   "author": "Jeff Tian",
   "main": "dist/index.js",
