@@ -45,6 +45,7 @@ function resolveVersion(plugin) {
         return Promise.nfcall(npm.commands.view, [npmId + '@' + requiredVersion, 'engines'], true);
     })
     .then(function(versions) {
+        console.log('versions with engines = ', versions);
         versions = Immutable.Map(versions).entrySeq();
 
         var result = versions
