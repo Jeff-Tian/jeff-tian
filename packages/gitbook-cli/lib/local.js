@@ -2,18 +2,15 @@ var Q = require('q');
 var fs = require('fs-extra');
 var path = require('path');
 var _ = require('lodash');
-var npmi = require('npmi');
-var npm = require('npm');
-var tmp = require('tmp');
 var color = require('bash-color');
-var parsedArgv = require('optimist').argv;
-
+require('optimist').argv;
 var config = require('./config');
 var tags = require('./tags');
 
 // Return a list of all available versions on this system
 function listVersions() {
     var folders = fs.readdirSync(config.VERSIONS_ROOT);
+    console.log('folders = ', folders);
 
     return _.chain(folders)
         .map(function(tag) {
@@ -122,6 +119,7 @@ function linkVersion(name, folder) {
 
 module.exports = {
     load: loadVersion,
+
     resolve: resolveVersion,
     versions: listVersions,
     remove: removeVersion,

@@ -70,6 +70,8 @@ function resolveVersion(version) {
 function installVersion(version, forceInstall) {
     return resolveVersion(version)
         .then(function (_version) {
+            console.log('resolved version = ', _version);
+
             version = _version;
             return Q.nfcall(tmp.dir.bind(tmp));
         })
