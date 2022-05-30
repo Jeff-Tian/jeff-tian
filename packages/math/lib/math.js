@@ -7,7 +7,8 @@ Math.error = (message, v) => {
 Math.isVariable = x => !Math.isNumber(x)
 Math.isSameVariable = (x, y) => Math.isVariable(x) && Math.isVariable(y) && x === y
 Math.isTheNumber = (exp, x) => Math.isNumber(exp) && exp.toString() === x.toString()
-Math.makeSum = (x, y) => {
+
+const makeSumOf2 = (x, y) => {
     if (Math.isTheNumber(x, 0)) {
         return y;
     }
@@ -20,7 +21,17 @@ Math.makeSum = (x, y) => {
         return (Number(x) + Number(y)).toString();
     }
 
-    return x + ' + ' + y
+    return [x, '+', y]
+}
+
+Math.makeSum = (x, y, ...rest) => {
+    const sumOfTwo = makeSumOf2(x, y)
+
+    if (rest.length <= 0) {
+        return sumOfTwo
+    }
+
+    return Math.makeSum(sumOfTwo, ...rest)
 }
 Math.makeProduct = (x, y) => {
     if (Math.isTheNumber(x, 0)) {
@@ -58,17 +69,31 @@ Math.cdr = (list) => {
 Math.caddr = (list) => {
     return Math.car(Math.cdr(Math.cdr(list)))
 }
+Math.cddr = (list) => {
+    const [_car, _2nd, ...cddr] = list
+    return cddr
+}
 
 Math.isProduct = (list) => {
     const [_arg1, operator, _arg2] = list
     return operator === '*'
 }
 
+const getCddrOrCaddr = (list) => {
+    const cddr = Math.cddr(list);
+
+    if (cddr.length <= 1) {
+        return Math.caddr(list);
+    }
+
+    return cddr;
+}
+
 Math.multiplier = Math.car
-Math.multiplicand = Math.caddr
+Math.multiplicand = getCddrOrCaddr
 
 Math.addend = Math.car
-Math.augend = Math.caddr
+Math.augend = getCddrOrCaddr
 
 Math.isExponentiation = (list) => {
     const [_arg1, operator, _arg2] = list

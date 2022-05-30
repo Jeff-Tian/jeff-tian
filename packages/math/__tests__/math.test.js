@@ -70,7 +70,22 @@ describe('math', () => {
         })
 
         it('makes a sum expression for 2 variables', () => {
-            assert(Math.makeSum('x', 'y') === 'x + y')
+            assert(Math.makeSum('x', 'y').join(' ') === 'x + y')
+        })
+
+        it('makes a sum expression for 3 numbers', () => {
+            assert(Math.makeSum('1', '2', '3') === '6')
+        })
+
+        it('makes a sum expression for numbers with another expression', () => {
+            assert(Math.makeSum('1', Math.makeProduct('2', '3')) === '7')
+        })
+
+        it('makes a sum expression for variables with another expression', () => {
+            assert.deepStrictEqual(
+                Math.makeSum('x', Math.makeProduct('2', '3')),
+                ['x', '+', '6']
+            )
         })
     })
 
@@ -126,6 +141,10 @@ describe('math', () => {
         it('gets the addend from a sum expression', () => {
             assert(Math.addend(['1', '+', 'a2']) === '1')
         })
+
+        it('gets the addend which is another expression from a sum expression', () => {
+            assert.deepStrictEqual(Math.addend([['2', '**', 'x'], '+', '3']), ['2', '**', 'x'])
+        })
     })
 
     describe('caddr', () => {
@@ -137,6 +156,14 @@ describe('math', () => {
     describe('augend', () => {
         it('gets the augend from a sum expression', () => {
             assert(Math.augend(['1', '+', 'a2']) === 'a2')
+        })
+
+        it('gets the augend which is another expression from a sum expression', () => {
+            assert.deepStrictEqual(Math.augend(['1', '+', ['a2', '+', 'a3']]), ['a2', '+', 'a3'])
+        })
+
+        it('gets the augend which are multiple items', () => {
+            assert.deepStrictEqual(Math.augend(['1', '+', '2', '+', '3']), ['2', '+', '3'])
         })
     })
 
@@ -159,6 +186,14 @@ describe('math', () => {
     describe('multiplicand', () => {
         it("gets the multiplicand from a product expression", () => {
             assert(Math.multiplicand(['1', '*', '2']) === '2')
+        })
+
+        it('gets the multiplicand which is multiple items from a product expression', () => {
+            assert.deepStrictEqual(Math.multiplicand(['1', '*', '2', '*', '3']), ['2', '*', '3'])
+        })
+
+        it('gets the multiplicand which is another expression from a product expression', () => {
+            assert.deepStrictEqual(Math.multiplicand(['1', '*', ['2', '+', '3']]), ['2', '+', '3'])
         })
     })
 
@@ -210,9 +245,27 @@ describe('math', () => {
         })
     })
 
+    describe('cddr', () => {
+        it("gets the rest of the elements of a list after the 2nd element", () => {
+            assert.deepStrictEqual(Math.cddr([1, 2, 3, 4, 5]), [3, 4, 5])
+        })
+    })
+
     describe('deriv', () => {
         it('calculates the derivation of x + 3, which results to 1', () => {
             assert(Math.deriv(['x', '+', '3'], 'x') === '1')
+        })
+
+        it('calculates the derivation of x**0, which results to 0', () => {
+            assert(Math.deriv(['x', '**', '0'], 'x') === '0')
+        })
+
+        it('calculates the derivation of x**3, which results to 3*x**2', () => {
+            assert.deepStrictEqual(Math.deriv(['x', '**', '3'], 'x'), ['3', '*', ['x', '**', 2]])
+        })
+
+        it('calculates the derivation of x + (3 * (x + (y+2))), which results to 4', () => {
+            assert(Math.deriv(['3', '+', ['x', '+', ['y', '+', '2']]], 'x') === '4')
         })
     })
 });
