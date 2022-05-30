@@ -172,6 +172,18 @@ describe('math', () => {
         })
     })
 
+    describe('base', () => {
+        it('gets the base from an exponentiation expression', () => {
+            assert(Math.base(['x', '**', '3']) === 'x')
+        })
+    })
+
+    describe('exponent', () => {
+        it('gets the exponent from an exponentiation expression', () => {
+            assert(Math.exponent(['x', '**', '3']) === '3')
+        })
+    })
+
     describe('deriv', () => {
         it('calculates the derivation of x + 3, which results to 1', () => {
             assert(Math.deriv(['x', '+', '3'], 'x') === '1')

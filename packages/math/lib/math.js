@@ -74,6 +74,8 @@ Math.isExponentiation = (list) => {
     const [_arg1, operator, _arg2] = list
     return operator === '**'
 }
+Math.base = Math.car
+Math.exponent = Math.caddr
 
 Math.deriv = (exp, v) => {
     return '1';
