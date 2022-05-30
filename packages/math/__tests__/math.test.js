@@ -13,4 +13,12 @@ describe('math', () => {
             assert(Math.isNumber('a') === false);
         });
     });
+
+    describe('error', () => {
+        it('throws error', () => {
+            assert.throws(()=>{
+                Math.error('message', 'a')
+            }, /message regarding to a/)
+        })
+    })
 });
