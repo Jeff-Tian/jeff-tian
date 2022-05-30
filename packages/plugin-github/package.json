@@ -4,7 +4,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "2.0.1",
+    "version": "2.0.2",
     "icon": "./icon.png",
     "description": "Integrate your website with your GitHub repository.",
     "main": "index.js",
