@@ -73,4 +73,30 @@ describe('math', () => {
             assert(Math.makeSum('x', 'y') === 'x + y')
         })
     })
+
+    describe('make product', () => {
+        it('makes a product for a1 is 0', () => {
+            assert(Math.makeProduct('0', 'a2') === '0')
+        })
+
+        it('makes a product for a1 is 1', () => {
+            assert(Math.makeProduct('1', 'a2') === 'a2')
+        })
+
+        it('makes a product for a2 is 0', () => {
+            assert(Math.makeProduct('a1', '0') === '0')
+        })
+
+        it('makes a product for a2 is 1', () => {
+            assert(Math.makeProduct('a1', '1') === 'a1')
+        })
+
+        it('makes a product for 2 numbers', () => {
+            assert(Math.makeProduct('2', '3') === '6')
+        })
+
+        it('makes a product for 2 variables', () => {
+            assert(Math.makeProduct('a1', 'a2') === 'a1 * a2')
+        })
+    })
 });

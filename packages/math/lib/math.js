@@ -22,6 +22,25 @@ Math.makeSum = (x, y) => {
 
     return x + ' + ' + y
 }
+Math.makeProduct = (x, y) => {
+    if (Math.isTheNumber(x, 0)) {
+        return '0'
+    }
+    if (Math.isTheNumber(x, 1)) {
+        return y
+    }
+    if (Math.isTheNumber(y, 0)) {
+        return '0'
+    }
+    if (Math.isTheNumber(y, 1)) {
+        return x
+    }
+    if (Math.isNumber(x) && Math.isNumber(y)) {
+        return (Number(x) * Number(y)).toString()
+    }
+
+    return x + ' * ' + y
+}
 
 module.exports = math;
 
