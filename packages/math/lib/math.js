@@ -43,9 +43,29 @@ Math.makeProduct = (x, y) => {
 }
 
 Math.isSum = (list) => {
-    const [_arg1, operator, _arg2] = list;
+    const [_arg1, operator, _arg2] = list
     return operator === '+'
 }
+
+Math.car = (list) => {
+    const [car] = list
+    return car
+}
+Math.cdr = (list) => {
+    const [_car, ...cdr] = list
+    return cdr;
+}
+Math.caddr = (list) => {
+    return Math.car(Math.cdr(Math.cdr(list)))
+}
+
+Math.isProduct = (list) => {
+    const [_arg1, operator, _arg2] = list
+    return operator === '*'
+}
+
+Math.addend = Math.car
+Math.augend = Math.caddr
 
 module.exports = math;
 

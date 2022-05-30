@@ -110,5 +110,43 @@ describe('math', () => {
         })
     })
 
+    describe('car', () => {
+        it('gets the first element of a list', () => {
+            assert(Math.car([1, 2, 3, 4]) === 1)
+        })
+    })
 
+    describe('cdr', () => {
+        it('gets the rest elements of a list', () => {
+            assert.deepStrictEqual(Math.cdr([1, 2, 3, 4]), [2, 3, 4])
+        })
+    })
+
+    describe('addend', () => {
+        it('gets the addend from a sum expression', () => {
+            assert(Math.addend(['1', '+', 'a2']) === '1')
+        })
+    })
+
+    describe('caddr', () => {
+        it('gets the 3rd elements of a list', () => {
+            assert.deepStrictEqual(Math.caddr([1, 2, 3, 4, 5]), 3)
+        })
+    })
+
+    describe('augend', () => {
+        it('gets the augend from a sum expression', () => {
+            assert(Math.augend(['1', '+', 'a2']) === 'a2')
+        })
+    })
+
+    describe('is expression a product?', () => {
+        it('is a product expression', () => {
+            assert(Math.isProduct(['1', '*', '2']) === true)
+        })
+
+        it("is NOT a product expression", () => {
+            assert(Math.isProduct(['1', '+', '2']) === false)
+        })
+    })
 });
