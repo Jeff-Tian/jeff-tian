@@ -6,7 +6,7 @@ Math.error = (message, v) => {
 }
 Math.isVariable = x => !Math.isNumber(x)
 Math.isSameVariable = (x, y) => Math.isVariable(x) && Math.isVariable(y) && x === y
-Math.isTheNumber = (exp, x) => Math.isNumber(exp) && exp === x.toString()
+Math.isTheNumber = (exp, x) => Math.isNumber(exp) && exp.toString() === x.toString()
 Math.makeSum = (x, y) => {
     if (Math.isTheNumber(x, 0)) {
         return y;
@@ -76,6 +76,21 @@ Math.isExponentiation = (list) => {
 }
 Math.base = Math.car
 Math.exponent = Math.caddr
+Math.makeExponentiation = (base, exponent) => {
+    if (Math.isTheNumber(base, 0) || Math.isTheNumber(base, 1) || Math.isTheNumber(exponent, 1)) {
+        return base
+    }
+
+    if (Math.isTheNumber(exponent, 0)) {
+        return '1'
+    }
+
+    if (Math.isNumber(base) && Math.isNumber(exponent)) {
+        return (Math.pow(Number(base), Number(exponent))).toString()
+    }
+
+    return [base, '**', exponent];
+}
 
 Math.deriv = (exp, v) => {
     return '1';

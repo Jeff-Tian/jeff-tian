@@ -184,6 +184,32 @@ describe('math', () => {
         })
     })
 
+    describe('make exponentiation', () => {
+        it('makes exponentiation for base is 0', () => {
+            assert(Math.makeExponentiation('0', 'a2') === '0')
+        })
+
+        it('makes exponentiation for base is 1', () => {
+            assert(Math.makeExponentiation('1', 'a2') === '1')
+        })
+
+        it('makes exponentiation for exponent is 0', () => {
+            assert(Math.makeExponentiation('a1', '0') === '1')
+        })
+
+        it('makes exponentiation for exponent is 1', () => {
+            assert(Math.makeExponentiation('a1', '1') === 'a1')
+        })
+
+        it('makes exponentiation for both base and exponent are numbers', () => {
+            assert(Math.makeExponentiation('5', '2') === '25')
+        })
+
+        it('makes exponentiation of x ** 3', () => {
+            assert.deepStrictEqual(Math.makeExponentiation('x', '3'), ['x', '**', '3'])
+        })
+    })
+
     describe('deriv', () => {
         it('calculates the derivation of x + 3, which results to 1', () => {
             assert(Math.deriv(['x', '+', '3'], 'x') === '1')
