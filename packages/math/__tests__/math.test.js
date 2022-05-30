@@ -138,6 +138,28 @@ describe('math', () => {
                 [['5', '+', 'x'], '*', 'y']
             )
         })
+
+        it('makes a product for nested expressions', () => {
+            assert.deepStrictEqual(
+                Math.makeProduct(
+                    'x',
+                    Math.makeProduct('y', Math.makeSum('x', 3))
+                ),
+                [
+                    "x",
+                    "*",
+                    [
+                        "y",
+                        "*",
+                        [
+                            "x",
+                            "+",
+                            3
+                        ]
+                    ]
+                ]
+            )
+        })
     })
 
     describe('isSum', () => {
