@@ -258,11 +258,24 @@ describe('math', () => {
         it('gets the base from an exponentiation expression', () => {
             assert(Math.base(['x', '**', '3']) === 'x')
         })
+
+        it('gets the base from an nested expression', () => {
+            assert.deepStrictEqual(
+                Math.base([['x', '+', 'y'], '**', ['6', '*', '7']]),
+                ['x', '+', 'y']
+            )
+        })
     })
 
     describe('exponent', () => {
         it('gets the exponent from an exponentiation expression', () => {
             assert(Math.exponent(['x', '**', '3']) === '3')
+        })
+
+        it('gets the exponent from a nested expression', () => {
+            assert.deepStrictEqual(
+                Math.exponent([['x', '+', 'y'], '**', ['6', '*', '7']]),
+                ['6', '*', '7'])
         })
     })
 
@@ -289,6 +302,21 @@ describe('math', () => {
 
         it('makes exponentiation of x ** 3', () => {
             assert.deepStrictEqual(Math.makeExponentiation('x', '3'), ['x', '**', '3'])
+        })
+
+        it('makes exponentiation of x ** 3 ** 4', () => {
+            assert.deepStrictEqual(Math.makeExponentiation('x', '3', '4'),
+                ['x', '**', '81'])
+        })
+
+        it('makes exponentiation of (x+y)**(5*6)', () => {
+            assert.deepStrictEqual(
+                Math.makeExponentiation(
+                    Math.makeSum('x', 'y'),
+                    Math.makeProduct('5', '6')
+                ),
+                [['x', '+', 'y'], '**', '30']
+            )
         })
     })
 

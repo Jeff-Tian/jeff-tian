@@ -111,7 +111,8 @@ Math.isExponentiation = (list) => {
 }
 Math.base = Math.car
 Math.exponent = Math.caddr
-Math.makeExponentiation = (base, exponent) => {
+
+const makeExponentiationForBaseAndExponent = (base, exponent) => {
     if (Math.isTheNumber(base, 0) || Math.isTheNumber(base, 1) || Math.isTheNumber(exponent, 1)) {
         return base
     }
@@ -125,6 +126,17 @@ Math.makeExponentiation = (base, exponent) => {
     }
 
     return [base, '**', exponent];
+}
+
+Math.makeExponentiation = (...args) => {
+    const [exponent, base, ...rest] = args.reverse();
+    const exponentiationOfBaseAndExponent = makeExponentiationForBaseAndExponent(base, exponent);
+
+    if (rest.length <= 0) {
+        return exponentiationOfBaseAndExponent
+    }
+
+    return Math.makeExponentiation(...[exponentiationOfBaseAndExponent, ...rest].reverse())
 }
 
 Math.deriv = (exp, v) => {
