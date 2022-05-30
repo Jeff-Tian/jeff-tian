@@ -30,6 +30,10 @@ describe('math', () => {
         it('is not a variable', () => {
             assert(Math.isVariable('123') === false);
         })
+
+        it('is not a variable for an expression', () => {
+            assert(Math.isVariable(Math.makeSum('x', '3')) === false)
+        })
     });
 
     describe('sameVariable?', () => {
@@ -85,6 +89,20 @@ describe('math', () => {
             assert.deepStrictEqual(
                 Math.makeSum('x', Math.makeProduct('2', '3')),
                 ['x', '+', '6']
+            )
+        })
+
+        it('makes a sum expression for negative numbers', () => {
+            assert.deepStrictEqual(
+                Math.makeSum('x', '-1'),
+                ['x', '+', '-1']
+            )
+        })
+
+        it('makes a sum expression for a positive number and a negative number', () => {
+            assert.deepStrictEqual(
+                Math.makeSum('2', '-1'),
+                '1'
             )
         })
     })
@@ -328,7 +346,7 @@ describe('math', () => {
 
     describe('deriv', () => {
         it('calculates the derivation of x + 3, which results to 1', () => {
-            assert(Math.deriv(['x', '+', '3'], 'x') === '1')
+            assert.deepStrictEqual(Math.deriv(['x', '+', '3'], 'x'), '1')
         })
 
         it('calculates the derivation of x**0, which results to 0', () => {
@@ -336,11 +354,32 @@ describe('math', () => {
         })
 
         it('calculates the derivation of x**3, which results to 3*x**2', () => {
-            assert.deepStrictEqual(Math.deriv(['x', '**', '3'], 'x'), ['3', '*', ['x', '**', 2]])
+            assert.deepStrictEqual(Math.deriv(['x', '**', '3'], 'x'), ['3', '*', ['x', '**', '2']])
         })
 
-        it('calculates the derivation of x + (3 * (x + (y+2))), which results to 4', () => {
-            assert(Math.deriv(['3', '+', ['x', '+', ['y', '+', '2']]], 'x') === '4')
+        it('calculates the derivation of 3 + (x + (y+2)), which results to 1', () => {
+            assert.deepStrictEqual(
+                Math.deriv(['3', '+', ['x', '+', ['y', '+', '2']]], 'x'),
+                '1'
+            )
         })
+
+        describe('x + 3*(x+(y+2)))', () => {
+            const exp = ['x', '+', '3', '*', ['x', '+', ['y', '+', '2']]];
+
+            it('calculates the derivation of x + 3*(x+(y+2))) with respect to z that results to 0', () => {
+                assert.deepStrictEqual(
+                    '0',
+                    Math.deriv(exp, 'z')
+                )
+            })
+
+            it('calculates the derivation of x + 3*(x+(y+2))), which results to 4', () => {
+                assert.deepStrictEqual(
+                    '4',
+                    Math.deriv(exp, 'x')
+                )
+            })
+        });
     })
 });

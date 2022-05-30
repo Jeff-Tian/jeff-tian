@@ -4,7 +4,7 @@ Math.isNumber = isFinite
 Math.error = (message, v) => {
     throw new Error(message + ' regarding to ' + v)
 }
-Math.isVariable = x => !Math.isNumber(x)
+Math.isVariable = x => !Math.isNumber(x) && !(x instanceof Array)
 Math.isSameVariable = (x, y) => Math.isVariable(x) && Math.isVariable(y) && x === y
 Math.isTheNumber = (exp, x) => Math.isNumber(exp) && exp.toString() === x.toString()
 
@@ -140,7 +140,56 @@ Math.makeExponentiation = (...args) => {
 }
 
 Math.deriv = (exp, v) => {
-    return '1';
+    if (Math.isNumber(exp)) {
+        return '0'
+    }
+
+    if (Math.isVariable(exp)) {
+        return Math.isSameVariable(exp, v) ? '1' : '0'
+    }
+
+    if (Math.isSum(exp)) {
+        return Math.makeSum(
+            Math.deriv(Math.addend(exp), v),
+            Math.deriv(Math.augend(exp), v)
+        )
+    }
+
+    if (Math.isProduct(exp)) {
+        return Math.makeSum(
+            Math.makeProduct(
+                Math.multiplier(exp),
+                Math.deriv(Math.multiplicand(exp), v)
+            ),
+            Math.makeProduct(
+                Math.deriv(Math.multiplier(exp), v),
+                Math.multiplicand(exp)
+            )
+        )
+    }
+
+    if (Math.isExponentiation(exp)) {
+        const exponent = Math.exponent(exp);
+
+        if (Math.isTheNumber(exponent, 0)) {
+            return '0'
+        }
+
+        const base = Math.base(exp)
+        if (Math.isTheNumber(exponent, 1)) {
+            return Math.deriv(base, v)
+        }
+
+        return Math.makeProduct(
+            exponent,
+            Math.makeExponentiation(
+                base,
+                Math.makeSum(exponent, -1)
+            )
+        )
+    }
+
+    return Math.error('unknown expression type -- deriv', exp)
 }
 
 module.exports = math;
