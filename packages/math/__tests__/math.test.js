@@ -161,4 +161,20 @@ describe('math', () => {
             assert(Math.multiplicand(['1', '*', '2']) === '2')
         })
     })
+
+    describe('exponentiation', () => {
+        it('detects exponentiation expression', () => {
+            assert(Math.isExponentiation(['x', '**', '3']) === true)
+        })
+
+        it('is NOT an exponentiation expression', () => {
+            assert(Math.isExponentiation(['x', '*', '3']) === false)
+        })
+    })
+
+    describe('deriv', () => {
+        it('calculates the derivation of x + 3, which results to 1', () => {
+            assert(Math.deriv(['x', '+', '3'], 'x') === '1')
+        })
+    })
 });

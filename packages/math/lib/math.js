@@ -70,6 +70,15 @@ Math.multiplicand = Math.caddr
 Math.addend = Math.car
 Math.augend = Math.caddr
 
+Math.isExponentiation = (list) => {
+    const [_arg1, operator, _arg2] = list
+    return operator === '**'
+}
+
+Math.deriv = (exp, v) => {
+    return '1';
+}
+
 module.exports = math;
 
 function math() {
