@@ -64,6 +64,9 @@ Math.isProduct = (list) => {
     return operator === '*'
 }
 
+Math.multiplier = Math.car
+Math.multiplicand = Math.caddr
+
 Math.addend = Math.car
 Math.augend = Math.caddr
 

@@ -149,4 +149,16 @@ describe('math', () => {
             assert(Math.isProduct(['1', '+', '2']) === false)
         })
     })
+
+    describe('multiplier', () => {
+        it('gets the multiplier from a product expression', () => {
+            assert(Math.multiplier(['1', '*', '2']) === '1')
+        })
+    })
+
+    describe('multiplicand', () => {
+        it("gets the multiplicand from a product expression", () => {
+            assert(Math.multiplicand(['1', '*', '2']) === '2')
+        })
+    })
 });
