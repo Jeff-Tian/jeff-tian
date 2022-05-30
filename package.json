@@ -16,6 +16,7 @@
     "pub": "lerna bootstrap && lerna publish && git push && git push --tags",
     "re-pub": "lerna publish --from-git",
     "repub": "lerna publish from-package",
-    "ls": "lerna ls"
+    "ls": "lerna ls",
+    "create-package": "lerna create"
   }
 }
