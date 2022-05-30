@@ -16,9 +16,19 @@ describe('math', () => {
 
     describe('error', () => {
         it('throws error', () => {
-            assert.throws(()=>{
+            assert.throws(() => {
                 Math.error('message', 'a')
             }, /message regarding to a/)
         })
     })
+
+    describe('variable', () => {
+        it('is a variable', () => {
+            assert(Math.isVariable('x') === true);
+        })
+
+        it('is not a variable', () => {
+            assert(Math.isVariable('123') === false);
+        })
+    });
 });
