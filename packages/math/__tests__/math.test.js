@@ -102,11 +102,13 @@ describe('math', () => {
 
     describe('isSum', () => {
         it('is a sum expression', () => {
-            assert(Math.isSum('a + b') === true)
+            assert(Math.isSum(['a', '+', 'b']) === true)
         })
 
         it('is not a sum expression', () => {
-            assert(Math.isSum('a * b') === false)
+            assert(Math.isSum(['a', '*', 'b']) === false)
         })
     })
+
+
 });

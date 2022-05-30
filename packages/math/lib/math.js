@@ -42,8 +42,8 @@ Math.makeProduct = (x, y) => {
     return x + ' * ' + y
 }
 
-Math.isSum = (s) => {
-    const [_arg1, operator, _arg2] = s.split(' ');
+Math.isSum = (list) => {
+    const [_arg1, operator, _arg2] = list;
     return operator === '+'
 }
 
