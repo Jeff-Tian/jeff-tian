@@ -1,7 +1,7 @@
 'use strict';
 
 const math = require('..');
-const assert = require("assert");
+const assert = require("power-assert").customize({});
 
 describe('math', () => {
     describe('isNumber', () => {
@@ -58,11 +58,11 @@ describe('math', () => {
 
     describe('make sum', () => {
         it('makes a sum expression for a1 is 0', () => {
-            assert(Math.makeSum(0, 'a2') === '0')
+            assert(Math.makeSum('0', 'a2') === 'a2')
         })
 
         it('makes a sum expression for a2 is 0', () => {
-            assert(Math.makeSum('a1', 0) === '0')
+            assert(Math.makeSum('a1', '0') === 'a1')
         })
 
         it('makes a sum expression for 2 numbers', () => {

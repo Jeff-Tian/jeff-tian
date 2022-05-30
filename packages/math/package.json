@@ -26,9 +26,14 @@
     "url": "git+https://github.com/Jeff-Tian/jeff-tian.git"
   },
   "scripts": {
-    "test": "mocha --timeout 3000 --require espower-typescript/guess __tests__/**/*.test.js"
+    "test": "mocha --timeout 3000 --require intelli-espower-loader __tests__/**/*.test.js"
   },
   "bugs": {
     "url": "https://github.com/Jeff-Tian/jeff-tian/issues"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "power-assert": "latest",
+    "intelli-espower-loader": "^1.1.0"
   }
 }
