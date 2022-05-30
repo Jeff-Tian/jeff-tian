@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@jeff-tian/sleep": "^2.0.0",
+    "@jeff-tian/sleep": "^2.0.1",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.13.5",
     "espower-typescript": "^9.0.2",

@@ -1,6 +1,6 @@
 {
   "name": "@jeff-tian/math",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Math extended",
   "keywords": [
     "math",
@@ -32,8 +32,8 @@
     "url": "https://github.com/Jeff-Tian/jeff-tian/issues"
   },
   "devDependencies": {
+    "intelli-espower-loader": "^1.1.0",
     "mocha": "latest",
-    "power-assert": "latest",
-    "intelli-espower-loader": "^1.1.0"
+    "power-assert": "latest"
   }
 }
