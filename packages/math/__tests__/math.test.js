@@ -111,7 +111,32 @@ describe('math', () => {
         })
 
         it('makes a product for 2 variables', () => {
-            assert(Math.makeProduct('a1', 'a2') === 'a1 * a2')
+            assert(Math.makeProduct('a1', 'a2').join(' ') === 'a1 * a2')
+        })
+
+        it('makes a product for 3 numbers', () => {
+            assert(Math.makeProduct('2', '3', '4') === '24')
+        })
+
+        it('makes a product for number with another expression', () => {
+            assert.deepStrictEqual(Math.makeProduct('2', Math.makeSum('5', '6')), '22')
+        })
+
+        it('makes a product for another expression and a number', () => {
+            assert.deepStrictEqual(
+                Math.makeProduct(Math.makeSum('5', '6'), '2'),
+                '22'
+            )
+        })
+
+        it('makes a product for another expression and a variable', () => {
+            assert.deepStrictEqual(
+                Math.makeProduct(
+                    Math.makeSum('5', 'x'),
+                    'y'
+                ),
+                [['5', '+', 'x'], '*', 'y']
+            )
         })
     })
 

@@ -33,7 +33,8 @@ Math.makeSum = (x, y, ...rest) => {
 
     return Math.makeSum(sumOfTwo, ...rest)
 }
-Math.makeProduct = (x, y) => {
+
+const makeProductOfTwo = (x, y) => {
     if (Math.isTheNumber(x, 0)) {
         return '0'
     }
@@ -50,7 +51,16 @@ Math.makeProduct = (x, y) => {
         return (Number(x) * Number(y)).toString()
     }
 
-    return x + ' * ' + y
+    return [x, '*', y]
+}
+Math.makeProduct = (x, y, ...rest) => {
+    const productOfTwo = makeProductOfTwo(x, y)
+
+    if (rest.length <= 0) {
+        return productOfTwo
+    }
+
+    return Math.makeProduct(productOfTwo, ...rest)
 }
 
 Math.isSum = (list) => {
