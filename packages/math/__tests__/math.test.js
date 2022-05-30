@@ -99,4 +99,14 @@ describe('math', () => {
             assert(Math.makeProduct('a1', 'a2') === 'a1 * a2')
         })
     })
+
+    describe('isSum', () => {
+        it('is a sum expression', () => {
+            assert(Math.isSum('a + b') === true)
+        })
+
+        it('is not a sum expression', () => {
+            assert(Math.isSum('a * b') === false)
+        })
+    })
 });

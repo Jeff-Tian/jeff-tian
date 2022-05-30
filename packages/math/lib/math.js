@@ -42,6 +42,11 @@ Math.makeProduct = (x, y) => {
     return x + ' * ' + y
 }
 
+Math.isSum = (s) => {
+    const [_arg1, operator, _arg2] = s.split(' ');
+    return operator === '+'
+}
+
 module.exports = math;
 
 function math() {
