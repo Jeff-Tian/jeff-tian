@@ -18,7 +18,6 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.yarnpkg.com",
     "access": "public"
   },
   "repository": {
@@ -35,5 +34,6 @@
     "intelli-espower-loader": "^1.1.0",
     "mocha": "latest",
     "power-assert": "latest"
-  }
+  },
+  "gitHead": "fde2dab2846300bb1362026294783350de7e34f7"
 }
