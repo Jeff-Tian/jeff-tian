@@ -31,4 +31,14 @@ describe('math', () => {
             assert(Math.isVariable('123') === false);
         })
     });
+
+    describe('sameVariable?', () => {
+        it('is the same variable', () => {
+            assert(Math.isSameVariable('x', 'x') === true)
+        })
+
+        it('is not the same variable', () => {
+            assert(Math.isSameVariable('x', 'y') === false)
+        })
+    })
 });
