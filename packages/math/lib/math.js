@@ -6,6 +6,10 @@ Math.error = (message, v) => {
 }
 Math.isVariable = x => !Math.isNumber(x)
 Math.isSameVariable = (x, y) => Math.isVariable(x) && Math.isVariable(y) && x === y
+Math.isTheNumber = (exp, x) => Math.isNumber(exp) && exp === x.toString()
+Math.makeSum = (x, y) => {
+    return '0'
+}
 
 module.exports = math;
 
