@@ -364,6 +364,29 @@ describe('math', () => {
             )
         })
 
+        it('calculates the derivation of 2 * x, which results to 2', () => {
+            assert.deepStrictEqual(
+                Math.deriv(['2', '*', 'x'], 'x'),
+                '2'
+            )
+        })
+
+        it('calculates the derivation of expression with only 1 variable', () => {
+            assert.deepStrictEqual(
+                Math.deriv('x', 'x'),
+                '1'
+            )
+
+            assert.deepStrictEqual(
+                Math.deriv(['x'], 'x'),
+                '1'
+            )
+        })
+
+        it('is an expression with only 1 variable', () => {
+            assert(Math.isExpressionWithOnly1Variable(['x']) === true)
+        })
+
         describe('x + 3*(x+(y+2)))', () => {
             const exp = ['x', '+', '3', '*', ['x', '+', ['y', '+', '2']]];
 

@@ -139,6 +139,10 @@ Math.makeExponentiation = (...args) => {
     return Math.makeExponentiation(...[exponentiationOfBaseAndExponent, ...rest].reverse())
 }
 
+Math.isExpressionWithOnly1Variable = (exp) => {
+    return exp instanceof Array && exp.length === 1 && Math.isVariable(exp[0])
+}
+
 Math.deriv = (exp, v) => {
     if (Math.isNumber(exp)) {
         return '0'
@@ -187,6 +191,10 @@ Math.deriv = (exp, v) => {
                 Math.makeSum(exponent, -1)
             )
         )
+    }
+
+    if (Math.isExpressionWithOnly1Variable(exp)) {
+        return Math.deriv(exp[0], v)
     }
 
     return Math.error('unknown expression type -- deriv', exp)
