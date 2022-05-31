@@ -364,6 +364,14 @@ describe('math', () => {
             )
         })
 
+        // Will enhance later
+        it.skip('calculates the derivation of 3*x**2, which results to 6*x', () => {
+            assert.deepStrictEqual(
+                Math.deriv(['3', '*', 'x', '**', 2], 'x'),
+                '6*x'
+            )
+        })
+
         it('calculates the derivation of 2 * x, which results to 2', () => {
             assert.deepStrictEqual(
                 Math.deriv(['2', '*', 'x'], 'x'),
