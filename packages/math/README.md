@@ -24,7 +24,7 @@ console.log(Math.deriv(['3', '*', 'x', '**', '2'], 'x'))
 
 在线尝试： https://npm.runkit.com/%40jeff-tian%2Fmath
 
-![](![img.png](img.png))
+![](img.png)
 
 ## 谁在使用
 
