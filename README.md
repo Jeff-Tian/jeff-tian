@@ -1,6 +1,16 @@
 # Jeff Tian's Github
 
-> A wild developer
+> A wild developer 野生程序员
+
+## 有任何问题欢迎来知乎向我咨询
+
+<p align="center">
+    <a href="https://www.zhihu.com/consult/people/1073548674713423872" target="blank">
+        <img src="https://first-go-vercel.vercel.app/api/dynamicimage" alt="向我咨询"/>
+    </a>
+</p>
+
+## 欢迎关注我的微信公众号
 
 ![Hardway](https://ml.jiwai.win/mp-hardway.png)
 
@@ -13,6 +23,8 @@
 <a href="https://github.com/anuraghazra/github-readme-stats">
     <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jeff-tian&langs_count=10&layout=compact" alt="top languages" />
 </a>
+
+<div style="float: none; clear: both;"></div>
 
 ---
 
