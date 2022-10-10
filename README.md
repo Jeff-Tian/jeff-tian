@@ -24,7 +24,20 @@
     <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jeff-tian&langs_count=10&layout=compact" alt="top languages" />
 </a>
 
-<div style="float: none; clear: both;"></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 ---
 
