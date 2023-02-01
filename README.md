@@ -24,12 +24,25 @@ using `lerna`
 
 ## Development
 
+```shell
+npm install -g lerna
+```
+
 under project root:
 
 ```shell script
 yarn
 npm rebuild # if there were errors regarding @jeff-tian/sleep
 yarn test
+```
+
+## Add dependencies to specific package
+
+```shell script
+lerna add gatsby-core-utils --scope=@jeff-tian/gatsby-source-yuque
+
+# Or try using the Copilot suggested one:
+yarn add -W -D -E <package-name> --scope=@jeff-tian/<package-name>
 ```
 
 ## Publish
