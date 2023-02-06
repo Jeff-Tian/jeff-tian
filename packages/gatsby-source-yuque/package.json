@@ -31,7 +31,6 @@
     "axios": "^0.19.2",
     "dayjs": "^1.8.22",
     "debug": "^4.1.1",
-    "gatsby-source-filesystem": "4.25.0",
     "gray-matter": "^4.0.2",
     "html-entities": "^1.2.1",
     "queue": "^6.0.1",
@@ -41,7 +40,8 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.7",
     "babel-preset-gatsby-package": "^0.2.17",
-    "cross-env": "^7.0.2"
+    "cross-env": "^7.0.2",
+    "gatsby-source-filesystem": "4.25.0"
   },
   "keywords": [
     "gatsby",
@@ -49,5 +49,8 @@
     "gatsby-source-plugin",
     "yuque"
   ],
-  "gitHead": "fde2dab2846300bb1362026294783350de7e34f7"
+  "gitHead": "fde2dab2846300bb1362026294783350de7e34f7",
+  "peerDependencies": {
+    "gatsby-source-filesystem": "4.25.0"
+  }
 }
