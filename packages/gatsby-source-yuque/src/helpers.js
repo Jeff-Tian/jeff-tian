@@ -2,6 +2,7 @@ const assert = require("assert");
 const {getDate} = require("./get-date");
 const path = require("path");
 const process = require(`process`)
+const getAllArticles = require("./download");
 
 const cwd = process.cwd()
 
