@@ -3,7 +3,7 @@ const {escapeSpecialCharacters} = require('./escape-special-characters')
 
 const getAllArticles = require(`./download`)
 const {formatDate, formatArray} = require(`./utils`)
-const {getYuqueConfig, sourceAllNodes} = require("./helpers");
+const {getYuqueConfig, sourceAllNodes, sourceNode} = require("./helpers");
 
 module.exports = {
     sourceNodes: async (context, pluginOptions) => {
@@ -64,7 +64,8 @@ module.exports = {
             },
         })
     },
-    sourceAllNodes: sourceAllNodes
+    sourceAllNodes,
+    sourceNode
 }
 
 function createArticle(mdNameFormat, createNodeId, createContentDigest, createNode) {
