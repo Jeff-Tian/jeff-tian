@@ -1,6 +1,6 @@
 const fs = require(`fs`);
 const R = require(`ramda`);
-const Queue = require(`queue`);
+const Queue = import(`queue`);
 
 const {parseMatter, renameKeys} = require(`./utils`);
 const YuqueClient = require(`./yuque`);
@@ -79,7 +79,8 @@ class Downloader {
             R.filter(article => article.first_published_at)
         )(articles.data);
 
-        const queue = new Queue({concurrency: 5});
+        const Q = await Queue;
+        const queue = new Q({concurrency: 5});
 
         let article;
         let cacheIndex;
