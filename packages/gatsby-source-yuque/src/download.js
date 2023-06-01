@@ -1,5 +1,5 @@
-const fs = require(`fs`);
-const R = require(`ramda`);
+const FS = import(`fs`);
+const R = import(`ramda`);
 const Queue = import(`queue`);
 
 const {parseMatter, renameKeys} = require(`./utils`);
@@ -50,13 +50,12 @@ class Downloader {
         const {client, _cachedArticles, reporter} = this;
         return function () {
             reporter.info(`download article body: ${item.title}`);
-            return client.getArticle(item.slug).then(({data: article}) => {
+            return client.getArticle(item.slug).then(async ({data: article}) => {
                 const cachedArticle = _cachedArticles[index];
                 // matter 解析
                 const parseRet = parseMatter(article.body, reporter);
                 const source = {...item, ...parseRet};
-                const newArticle = R.merge(cachedArticle, source);
-                _cachedArticles[index] = newArticle;
+                _cachedArticles[index] = (await R).merge(cachedArticle, source);
             });
         };
     }
@@ -70,13 +69,14 @@ class Downloader {
     async fetchArticles() {
         const {_cachedArticles, reporter} = this;
         const articles = await this.client.getArticles();
+        const RR = await R;
 
-        const realArticles = R.compose(
-            R.map(R.compose(
+        const realArticles = RR.compose(
+            RR.map(RR.compose(
                 renameKeys({published_at: `updated_at`, first_published_at: `created_at`}),
-                R.pick(PICK_PROPERTY)
+                RR.pick(PICK_PROPERTY)
             )),
-            R.filter(article => article.first_published_at)
+            RR.filter(article => article.first_published_at)
         )(articles.data);
 
         const Q = await Queue;
@@ -136,6 +136,7 @@ class Downloader {
                 this._cachedArticles = await readCache();
                 return;
             } else {
+                const fs = await FS;
                 if (fs.existsSync(yuquePath)) {
                     const articles = require(yuquePath);
                     if (Array.isArray(articles)) {
@@ -163,6 +164,7 @@ class Downloader {
                 reporter.info(`write cache done!`);
             } else {
                 reporter.info(`writing to local file: ${yuquePath}`);
+                const fs = await FS;
                 fs.writeFileSync(yuquePath, JSON.stringify(_cachedArticles, null, 2), {
                     encoding: `UTF8`
                 });
