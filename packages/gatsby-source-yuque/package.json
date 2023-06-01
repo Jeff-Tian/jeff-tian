@@ -27,19 +27,19 @@
     "test": "mocha --timeout 3000 __tests__/**/*.test.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.8.7",
+    "@babel/runtime": "7.8.7",
     "axios": "^0.19.2",
     "dayjs": "^1.8.22",
     "debug": "^4.1.1",
     "gray-matter": "^4.0.2",
     "html-entities": "^1.2.1",
-    "queue": "^6.0.1",
-    "ramda": "^0.27.0"
+    "queue": "6.0.1",
+    "ramda": "0.27.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.7",
-    "babel-preset-gatsby-package": "^0.2.17",
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.8.7",
+    "babel-preset-gatsby-package": "0.2.17",
     "cross-env": "^7.0.2",
     "gatsby-source-filesystem": "5.5.0"
   },
