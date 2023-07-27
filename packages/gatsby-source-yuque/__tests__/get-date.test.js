@@ -1,5 +1,6 @@
-const { getDate } = require('../src/get-date')
-const assert = require('assert')
+import {getDate} from "../src/get-date.js";
+
+import assert from "assert";
 
 describe('get date', () => {
   it('gets date', () => {

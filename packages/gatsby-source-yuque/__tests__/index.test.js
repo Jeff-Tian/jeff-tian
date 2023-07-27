@@ -1,5 +1,7 @@
-const assert = require('assert');
-const { escapeSpecialCharacters } = require('../src/escape-special-characters')
+import assert from "assert";
+
+import {escapeSpecialCharacters} from "../src/escape-special-characters.js";
+
 
 describe("escape special characters", () => {
     it("escapes for undefined", () => {

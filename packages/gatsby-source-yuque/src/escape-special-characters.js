@@ -1,1 +1,1 @@
-exports.escapeSpecialCharacters = s => !s ? '' : s.replace(/`/g, '').replace(/"/g, '').replace(/\\/g, '').replace(/'/g, '')
+export const escapeSpecialCharacters = s => !s ? '' : s.replace(/`/g, '').replace(/"/g, '').replace(/\\/g, '').replace(/'/g, '')

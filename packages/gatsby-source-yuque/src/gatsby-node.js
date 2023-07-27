@@ -1,71 +1,68 @@
-const {createRemoteFileNode} = require(`gatsby-source-filesystem`)
-const {escapeSpecialCharacters} = require('./escape-special-characters')
+import {createRemoteFileNode} from "gatsby-source-filesystem";
+import {escapeSpecialCharacters} from "./escape-special-characters.js";
+import {getYuqueConfig} from "./helpers.js";
+import {getAllArticles} from "./download.js";
+import {formatDate, formatArray} from "./utils.js";
 
-const getAllArticles = require(`./download`)
-const {formatDate, formatArray} = require(`./utils`)
-const {getYuqueConfig, sourceAllNodes, sourceNode} = require("./helpers");
 
-module.exports = {
-    sourceNodes: async (context, pluginOptions) => {
-        const {
-            actions: {createNode},
-            createNodeId,
-            createContentDigest,
-            reporter
-        } = context
+export {sourceNode, sourceAllNodes} from './helpers.js'
+export const sourceNodes = async (context, pluginOptions) => {
+    const {
+        actions: {createNode},
+        createNodeId,
+        createContentDigest,
+        reporter
+    } = context
 
-        try {
-            const yuqueConfig = getYuqueConfig(pluginOptions)
-            const articles = await getAllArticles(context, yuqueConfig)
+    try {
+        const yuqueConfig = getYuqueConfig(pluginOptions)
+        const articles = await getAllArticles(context, yuqueConfig)
 
-            articles.forEach(createArticle(yuqueConfig.mdNameFormat, createNodeId, createContentDigest, createNode))
+        articles.forEach(createArticle(yuqueConfig.mdNameFormat, createNodeId, createContentDigest, createNode))
 
-            return articles
-        } catch (ex) {
-            reporter.error(ex)
+        return articles
+    } catch (ex) {
+        reporter.error(ex)
 
-            return []
-        }
-    },
-    createResolvers: async ({
-                                actions: {createNode},
-                                cache,
-                                createNodeId,
-                                createResolvers,
-                                store,
-                                reporter,
-                            }) => {
-        createResolvers({
-            YuqueDoc: {
-                coverImg: {
-                    type: `File`,
-                    resolve(source) {
-                        if (source.cover && !source.cover.includes(`svg`)) {
-                            return createRemoteFileNode({
-                                url: source.cover,
-                                store,
-                                cache,
-                                createNode,
-                                createNodeId,
-                                reporter,
-                            })
-                        } else {
-                            return createRemoteFileNode({
-                                url: 'https://images.ctfassets.net/qixg1o8tujmf/7m0jrKYaDBwEvlc5lo8nt6/6d50a5050d9cdc0d4d2047e35feac292/10648733_696750647079056_2800539603462658695_o.jpg',
-                                store,
-                                cache,
-                                createNode,
-                                createNodeId,
-                                reporter,
-                            })
-                        }
-                    },
+        return []
+    }
+}
+export const createResolvers = async ({
+                                          actions: {createNode},
+                                          cache,
+                                          createNodeId,
+                                          createResolvers,
+                                          store,
+                                          reporter,
+                                      }) => {
+    createResolvers({
+        YuqueDoc: {
+            coverImg: {
+                type: `File`,
+                resolve(source) {
+                    if (source.cover && !source.cover.includes(`svg`)) {
+                        return createRemoteFileNode({
+                            url: source.cover,
+                            store,
+                            cache,
+                            createNode,
+                            createNodeId,
+                            reporter,
+                        })
+                    } else {
+                        return createRemoteFileNode({
+                            url: 'https://images.ctfassets.net/qixg1o8tujmf/7m0jrKYaDBwEvlc5lo8nt6/6d50a5050d9cdc0d4d2047e35feac292/10648733_696750647079056_2800539603462658695_o.jpg',
+                            store,
+                            cache,
+                            createNode,
+                            createNodeId,
+                            reporter,
+                        })
+                    }
                 },
             },
-        })
-    },
-    sourceAllNodes,
-    sourceNode
+        },
+    })
 }
 
 function createArticle(mdNameFormat, createNodeId, createContentDigest, createNode) {

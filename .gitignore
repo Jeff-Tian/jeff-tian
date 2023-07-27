@@ -6,3 +6,4 @@ sicp
 clojure-getting-started
 packages/gatsby-source-yuque/__tests__/fixtures/yuque-test.json
 yarn-error.log
+dist

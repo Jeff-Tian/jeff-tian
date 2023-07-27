@@ -1,5 +1,5 @@
-const {sourceNodes} = require("../src/gatsby-node");
-const assert = require("assert");
+import {sourceNodes} from "../src/gatsby-node.js";
+import assert from "assert";
 
 const yuqueConfig = {};
 const context = {

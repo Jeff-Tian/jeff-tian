@@ -1,3 +1,3 @@
-const debug = require(`debug`)
+import debug from "debug";
 
-module.exports = debug(`yuque`)
+export default debug(`yuque`)
