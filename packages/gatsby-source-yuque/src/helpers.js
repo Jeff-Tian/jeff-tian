@@ -2,7 +2,7 @@ const assert = require("assert");
 const {getDate} = require("./get-date");
 const path = require("path");
 const process = require(`process`)
-const getAllArticles = require("./download");
+const {YuqueClient} = require("./download");
 
 const cwd = process.cwd()
 
@@ -45,7 +45,7 @@ const source = (sourcing, emptyResult, ...args) => async (context, pluginOptions
 
     try {
         const yuqueConfig = getYuqueConfig(pluginOptions)
-        const yuqueClient = new getAllArticles.YuqueClient(yuqueConfig)
+        const yuqueClient = new YuqueClient(yuqueConfig)
 
         return yuqueClient[sourcing](...args)
     } catch (ex) {
