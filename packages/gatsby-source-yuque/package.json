@@ -4,7 +4,7 @@
     "access": "public"
   },
   "description": "Source plugin for pulling data into Gatsby from [语雀](https://www.yuque.com) API.",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "author": "Jeff Tian <jeff.tian@outlook.com>",
   "main": "dist/index.js",
   "license": "MIT",
