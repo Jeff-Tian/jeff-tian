@@ -1,8 +1,6 @@
-import YuqueClient from "../src/yuque.js";
-
-import assert from "assert";
-
-import nock from "nock";
+const YuqueClient = require("../src/yuque");
+const assert = require("assert");
+const nock = require("nock");
 
 describe('yuque', () => {
     it('displays cURL for failed fetching', async () => {

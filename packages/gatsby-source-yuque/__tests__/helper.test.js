@@ -1,5 +1,5 @@
-import {getYuqueConfig, sourceNode} from "../src/helpers.js";
-import assert from "assert";
+const {sourceNode, getYuqueConfig} = require('../src/helpers');
+const assert = require('assert');
 
 const context = {
     reporter: {

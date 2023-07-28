@@ -1,10 +1,7 @@
-import dayjs from "dayjs";
-
-import {AllHtmlEntities as Entities} from "html-entities";
-
-import grayMatter from "gray-matter";
-
-import R from "ramda";
+const dayjs = require(`dayjs`)
+const Entities = require(`html-entities`).AllHtmlEntities
+const grayMatter = require(`gray-matter`)
+const R = require(`ramda`)
 
 const entities = new Entities()
 
@@ -15,24 +12,24 @@ const entities = new Entities()
  * @param {Function} reporter Gatsby Reporter
  * @return {Object} data
  */
-export const parseMatter = (body, reporter) => {
-    body = entities.decode(body)
-    try {
-        // front matter 信息的 <br/> 换成 \n
-        const regex = /(---|title:|layout:|tags:|date:|categories:){1}(\S|\s)+?---/gi
-        body = body.replace(regex, a => a.replace(/(<br \/>|<br>|<br\/>)/gi, `\n`))
-        const result = grayMatter(body)
-        const data = {
-            ...result.data,
-            body: formatRaw(result.content)
-        }
-        return data
-    } catch (error) {
-        reporter.error(error)
-        return {
-            body
-        }
-    }
+exports.parseMatter = (body, reporter) => {
+	body = entities.decode(body)
+	try {
+		// front matter 信息的 <br/> 换成 \n
+		const regex = /(---|title:|layout:|tags:|date:|categories:){1}(\S|\s)+?---/gi
+		body = body.replace(regex, a => a.replace(/(<br \/>|<br>|<br\/>)/gi, `\n`))
+		const result = grayMatter(body)
+		const data = {
+			...result.data,
+			body: formatRaw(result.content)
+		}
+		return data
+	} catch (error) {
+		reporter.error(error)
+		return {
+			body
+		}
+	}
 }
 
 /**
@@ -41,8 +38,8 @@ export const parseMatter = (body, reporter) => {
  * @param {Date} date UTC
  * @return {Date} local Time
  */
-export const formatDate = date => {
-    return dayjs(date).format(`YYYY-MM-DDTHH:mm:ss`)
+exports.formatDate = date => {
+	return dayjs(date).format(`YYYY-MM-DDTHH:mm:ss`)
 }
 
 /**
@@ -51,9 +48,9 @@ export const formatDate = date => {
  * @param {Array} items items
  * @return {String} body
  */
-export const formatArray = items => {
-    items = Array.isArray(items) ? items : isString(items) ? [items] : []
-    return `[${items.join(`,`)}]`
+exports.formatArray = items => {
+	items = Array.isArray(items) ? items : isString(items) ? [items] : []
+	return `[${items.join(`,`)}]`
 }
 
 /**
@@ -63,9 +60,9 @@ export const formatArray = items => {
  * @return {String} body
  */
 function formatRaw(body) {
-    const multiBr = /(<br>\s){2}/gi
-    const hiddenContent = /<div style="display:none">[\s\S]*?<\/div>/gi
-    return body.replace(hiddenContent, ``).replace(multiBr, `<br>`)
+	const multiBr = /(<br>\s){2}/gi
+	const hiddenContent = /<div style="display:none">[\s\S]*?<\/div>/gi
+	return body.replace(hiddenContent, ``).replace(multiBr, `<br>`)
 }
 
 /**
@@ -73,10 +70,10 @@ function formatRaw(body) {
  * @param {any} x
  */
 function isString(x) {
-    return Object.prototype.toString.call(x) === `[object String]`
+	return Object.prototype.toString.call(x) === `[object String]`
 }
 
 // https://github.com/ramda/ramda/wiki/Cookbook#rename-keys-of-an-object
-export const renameKeys = R.curry((keysMap, obj) =>
-    R.reduce((acc, key) => R.assoc(keysMap[key] || key, obj[key], acc), {}, R.keys(obj))
+exports.renameKeys = R.curry((keysMap, obj) =>
+	R.reduce((acc, key) => R.assoc(keysMap[key] || key, obj[key], acc), {}, R.keys(obj))
 )

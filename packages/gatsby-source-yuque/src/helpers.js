@@ -1,16 +1,12 @@
-import assert from "assert";
-
-import {getDate} from "./get-date.js";
-
-import path from "path";
-
-import process from "process";
-
-import {getAllArticles} from "./download.js";
+const assert = require("assert");
+const {getDate} = require("./get-date");
+const path = require("path");
+const process = require(`process`)
+const getAllArticles = require("./download");
 
 const cwd = process.cwd()
 
-export const getYuqueConfig = pluginOptions => {
+const getYuqueConfig = pluginOptions => {
     const token = process.env.YUQUE_TOKEN
     const yuquePath = process.env.YUQUE_PATH
     const {
@@ -41,6 +37,8 @@ export const getYuqueConfig = pluginOptions => {
     }
 }
 
+exports.getYuqueConfig = getYuqueConfig
+
 
 const source = (sourcing, emptyResult, ...args) => async (context, pluginOptions) => {
     const {reporter} = context
@@ -57,5 +55,5 @@ const source = (sourcing, emptyResult, ...args) => async (context, pluginOptions
     }
 }
 
-export const sourceNode = (context, pluginOptions, slug) => source('getArticle', {}, slug)(context, pluginOptions)
-export const sourceAllNodes = source('getArticles', [])
+exports.sourceNode = (context, pluginOptions, slug) => source('getArticle', {}, slug)(context, pluginOptions)
+exports.sourceAllNodes = source('getArticles', [])

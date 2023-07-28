@@ -1,11 +1,9 @@
-import Queue from "queue";
+const fs = require(`fs`);
+const R = require(`ramda`);
+const Queue = require(`queue`);
 
-import fs from "fs";
-
-import R from "ramda";
-
-import {parseMatter, renameKeys} from './utils.js'
-import YuqueClient from './yuque.js';
+const {parseMatter, renameKeys} = require(`./utils`);
+const YuqueClient = require(`./yuque`);
 
 // 需要提取的文章属性字段
 const PICK_PROPERTY = [
@@ -30,7 +28,7 @@ const PICK_PROPERTY = [
  * @prop {Array} _cachedArticles 文章列表
  *
  */
-export default class Downloader {
+class Downloader {
     constructor(context, yuqueConfig) {
         this.client = new YuqueClient(yuqueConfig);
         this.reporter = context.reporter;
@@ -179,7 +177,7 @@ export default class Downloader {
     }
 }
 
-export async function getAllArticles(context, yuqueConfig) {
+module.exports = async function getAllArticles(context, yuqueConfig) {
     const downloader = new Downloader(context, yuqueConfig);
     try {
         await downloader.autoUpdate();
@@ -187,6 +185,7 @@ export async function getAllArticles(context, yuqueConfig) {
         console.error(ex);
     }
     return downloader._cachedArticles;
-}
+};
 
-export {YuqueClient} from './yuque.js'
+module.exports.YuqueClient = YuqueClient;
+module.exports.Downloader = Downloader;

@@ -1,4 +1,4 @@
-import util from "util";
+const util = require("util");
 
 function isObject(o) {
     return Object.prototype.toString.call(o) === '[object Object]';
@@ -75,7 +75,7 @@ const curlirize = config => {
     }
 };
 
-export default class UpstreamError extends Error {
+class UpstreamError extends Error {
     constructor(message, upstreamError) {
         super(message);
 
@@ -84,3 +84,5 @@ export default class UpstreamError extends Error {
         this.cURL = curlirize(upstreamError.config)
     }
 }
+
+module.exports = UpstreamError;
