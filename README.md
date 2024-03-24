@@ -36,6 +36,12 @@ npm rebuild # if there were errors regarding @jeff-tian/sleep
 yarn test
 ```
 
+## Add new packages
+
+```shell
+lerna create <package-name:mp>
+```
+
 ## Add dependencies to specific package
 
 ```shell script

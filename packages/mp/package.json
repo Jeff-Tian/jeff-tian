@@ -1,0 +1,36 @@
+{
+  "name": "@jeff-tian/mp",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "3.0.3",
+  "description": "Wechat mp sdk. 微信公众号开发包",
+  "keywords": [
+    "mp",
+    "wechat",
+    "微信",
+    "公众号",
+    "nodejs"
+  ],
+  "author": "Jeff Tian <jeff.tian@outlook.com>",
+  "homepage": "https://wechat.pa-ca.me",
+  "license": "ISC",
+  "main": "lib/mp.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jeff-Tian/jeff-tian.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/mp.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/Jeff-Tian/jeff-tian/issues"
+  }
+}
