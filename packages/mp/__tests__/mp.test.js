@@ -1,7 +1,16 @@
-'use strict';
+require('chai').should();
 
 const mp = require('..');
-const assert = require('assert').strict;
 
-assert.strictEqual(mp(), 'Hello from mp');
-console.info('mp tests passed');
+describe('fetching temp media', ()=>{
+    it('fetches temp media by media id', async () =>{
+        // arrange
+        const mediaId = 1234;
+
+        // act
+        const result = await mp.fetchTempMedia(mediaId);
+
+        // assert
+        result.should.be.an('string','hello')
+    })
+})
