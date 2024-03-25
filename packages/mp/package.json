@@ -28,7 +28,7 @@
     "url": "git+https://github.com/Jeff-Tian/jeff-tian.git"
   },
   "scripts": {
-    "test": "node ./__tests__/mp.test.js"
+    "test": "mocha --timeout 3000 --require intelli-espower-loader __tests__/**/*.test.js"
   },
   "bugs": {
     "url": "https://github.com/Jeff-Tian/jeff-tian/issues"

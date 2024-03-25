@@ -31,14 +31,22 @@ describe('fetching temp media', () => {
         result.data.errmsg.should.equal('invalid credential, access_token is invalid or not latest, could get access_token by getStableAccessToken, more details at https://mmbizurl.cn/s/JtxxFh33r rid: 65ffe934-2355113d-79ef0b31');
     })
 
-    it.skip('fetches temp media by media id', async () => {
+    it('fetches temp media by media id', async () => {
         // arrange
+        const scope = nock('https://api.weixin.qq.com');
+        scope.post('/cgi-bin/stable_token').reply(200, {access_token: '1234'});
+        scope.get('/cgi-bin/media/get?access_token=1234&media_id=1234').reply(200, {
+            "video_url": 'download url'
+        });
+
         const mediaId = 1234;
 
         // act
         const result = await mp.fetchTempMedia(mediaId);
 
         // assert
-        result.should.be.an('string', 'hello')
+        result.status.should.equal(200);
+        result.data.should.be.an('object');
+        result.data.should.not.haveOwnProperty('errcode');
     })
 })
